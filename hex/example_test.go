@@ -16,5 +16,20 @@ func ExampleInput() {
 		OutPut:
 			999, nil
 	*/
+}
 
+// ExampleOutput 将数字转为目标进制
+func ExampleOutput() {
+	num := int64(1330)
+	radix := 16
+
+	numStr, err := Output(num, radix)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(numStr)
+	/*
+		OutPut:
+			"1330", nil
+	*/
 }

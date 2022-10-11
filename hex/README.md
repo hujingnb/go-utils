@@ -1,7 +1,10 @@
 用于进制之间的转换. 
 
+导入: `import "github.com/hujingnb/go-utils/hex"`
+
 主要方法如下: 
 
-* `Input`: 按特定进制读取字符串
+* `Input`: 按指定进制读取字符串
+* `Output`: 将数字转为目标进制
 
-实例代码见: [example_test.go](./example_test.go)
+示例代码见: [example_test.go](./example_test.go)
