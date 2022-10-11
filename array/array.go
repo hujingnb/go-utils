@@ -107,3 +107,35 @@ func Intersect[T comparable](arrList ...[]T) []T {
 	}
 	return result
 }
+
+// Diff 计算数组的差集
+// 即数据在 arr 中, 但不在其他数组中
+func Diff[T comparable](arr []T, arrList ...[]T) []T {
+	if len(arr) <= 0 {
+		return nil
+	}
+	if len(arrList) <= 0 {
+		return arr
+	}
+	// 统计数组中的数据
+	dataMap := make(map[T]bool)
+	for _, item := range arr {
+		dataMap[item] = true
+	}
+	// 遍历其他数组, 将其他数组中存在的数据去掉
+	for _, itemArr := range arrList {
+		for _, item := range itemArr {
+			if _, ok := dataMap[item]; ok {
+				dataMap[item] = false
+			}
+		}
+	}
+	// 返回结果
+	result := make([]T, 0, len(dataMap))
+	for k, v := range dataMap {
+		if v {
+			result = append(result, k)
+		}
+	}
+	return result
+}

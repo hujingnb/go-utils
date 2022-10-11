@@ -64,3 +64,16 @@ func ExampleIntersect() {
 	// 3
 	// 4
 }
+
+// 数组取差集
+func ExampleDiff() {
+	arr1 := []int{1, 2, 3, 4}
+	arr2 := []int{2, 3, 5}
+	ret := Diff(arr1, arr2)
+	for _, item := range ret {
+		fmt.Println(item)
+	}
+	// Unordered Output:
+	// 1
+	// 4
+}
