@@ -75,3 +75,35 @@ func Equal[T comparable](arr1, arr2 []T) bool {
 	}
 	return true
 }
+
+// Intersect 多个数组取交集
+func Intersect[T comparable](arrList ...[]T) []T {
+	arrLen := len(arrList)
+	if arrLen <= 0 {
+		return nil
+	}
+	if arrLen == 1 {
+		return arrList[1]
+	}
+	// 统计第一个数组中存在的数据
+	dataMap := make(map[T]bool)
+	for _, item := range arrList[0] {
+		dataMap[item] = true
+	}
+	// 依次遍历后面的所有数组, 将在后续数组中不存在的数据剔除
+	for i := 1; i < arrLen; i++ {
+		tmpDataMap := make(map[T]bool)
+		for _, item := range arrList[i] {
+			if _, ok := dataMap[item]; ok {
+				tmpDataMap[item] = true
+			}
+		}
+		dataMap = tmpDataMap
+	}
+	// 生成返回结果
+	result := make([]T, 0, len(dataMap))
+	for k, _ := range dataMap {
+		result = append(result, k)
+	}
+	return result
+}

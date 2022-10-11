@@ -51,3 +51,16 @@ func ExampleEqual() {
 	fmt.Println(ret)
 	// Output: true
 }
+
+// 数组取交集
+func ExampleIntersect() {
+	arr1 := []int{1, 2, 3, 4}
+	arr2 := []int{3, 4, 5}
+	ret := Intersect(arr1, arr2)
+	for _, item := range ret {
+		fmt.Println(item)
+	}
+	// Unordered Output:
+	// 3
+	// 4
+}

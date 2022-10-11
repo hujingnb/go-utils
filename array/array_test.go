@@ -161,3 +161,39 @@ func TestEqual(t *testing.T) {
 		})
 	}
 }
+
+func TestIntersect(t *testing.T) {
+	testList := []struct {
+		Input  [][]int
+		Output []int
+	}{
+		{
+			Input: [][]int{
+				{1, 2, 3, 4},
+				{2, 3, 4, 5},
+				{3, 4, 5, 6},
+			},
+			Output: []int{3, 4},
+		},
+	}
+	for index, test := range testList {
+		runName := fmt.Sprintf("%d", index)
+		t.Run(runName, func(t *testing.T) {
+			ret := Intersect(test.Input...)
+			// 结果可能乱序, 比较内容是否一致
+			tmpMap := make(map[int]bool)
+			if len(ret) != len(test.Output) {
+				t.Error("intersect result error")
+			}
+			for _, item := range ret {
+				tmpMap[item] = true
+			}
+			for _, item := range test.Output {
+				if _, ok := tmpMap[item]; !ok {
+					t.Error("intersect result error")
+					break
+				}
+			}
+		})
+	}
+}
