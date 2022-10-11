@@ -1,6 +1,7 @@
 package hstring
 
 import (
+	"fmt"
 	"testing"
 )
 
@@ -157,6 +158,75 @@ func TestGet16Md5(t *testing.T) {
 			ret := Get16Md5(test.Input)
 			if ret != test.Output {
 				t.Error("output error")
+			}
+		})
+	}
+}
+
+func TestPad(t *testing.T) {
+	testList := []struct {
+		input  interface{}
+		length int
+		padStr string
+		_type  PadType
+		output string
+	}{
+		{ // 长度足够, 不需要填充
+			input:  "abcde",
+			length: 5,
+			padStr: "z",
+			_type:  PadLeft,
+			output: "abcde",
+		},
+		{ // 向左填充
+			input:  "abc",
+			length: 5,
+			padStr: "z",
+			_type:  PadLeft,
+			output: "zzabc",
+		},
+		{ // 向右填充
+			input:  "abc",
+			length: 5,
+			padStr: "z",
+			_type:  PadRight,
+			output: "abczz",
+		},
+		{ // 向左填充, 填充字符串超出
+			input:  "abcd",
+			length: 5,
+			padStr: "zz",
+			_type:  PadLeft,
+			output: "zzabcd",
+		},
+		{ // 向右填充, 填充字符串超出
+			input:  "abcd",
+			length: 5,
+			padStr: "zz",
+			_type:  PadRight,
+			output: "abcdzz",
+		},
+		{ // 整形
+			input:  10,
+			length: 5,
+			padStr: "0",
+			_type:  PadLeft,
+			output: "00010",
+		},
+		{ // 浮点数
+			input:  10.2,
+			length: 6,
+			padStr: "0",
+			_type:  PadRight,
+			output: "10.200",
+		},
+	}
+	for _, test := range testList {
+		runName := fmt.Sprintf("%s_%d_%s_%d", test.input, test.length, test.padStr, test._type)
+		t.Run(runName, func(t *testing.T) {
+			ret := Pad(test.input, test.length, test.padStr, test._type)
+			if ret != test.output {
+				t.Error("output is error")
 			}
 		})
 	}
