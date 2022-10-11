@@ -32,3 +32,13 @@ func ExampleSnakeToCamel() {
 			"helloWord"
 	*/
 }
+
+func ExampleToString() {
+	i := 5
+	ret := ToString(i)
+	fmt.Println(ret)
+	/*
+		Output:
+			"5"
+	*/
+}
