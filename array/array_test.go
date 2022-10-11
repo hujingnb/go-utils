@@ -67,3 +67,16 @@ func TestChunk(t *testing.T) {
 		})
 	}
 }
+
+func TestShuffle(t *testing.T) {
+	testList := [][]interface{}{
+		{1, 2, 3, 4},
+		{2, 2, 2, 2},
+	}
+	for index, test := range testList {
+		runName := fmt.Sprintf("test_%d", index)
+		t.Run(runName, func(t *testing.T) {
+			Shuffle(test)
+		})
+	}
+}

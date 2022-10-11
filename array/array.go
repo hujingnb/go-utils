@@ -4,6 +4,8 @@ package harray
 import (
 	"errors"
 	"math"
+	"math/rand"
+	"time"
 )
 
 // Chunk 数组切割
@@ -20,4 +22,18 @@ func Chunk[T any](array []T, size int) ([][]T, error) {
 		result = append(result, array[i:j])
 	}
 	return result, nil
+}
+
+// Shuffle 打乱数组顺序
+func Shuffle[T any](array []T) {
+	random := rand.New(rand.NewSource(time.Now().UnixNano()))
+	/*
+		思路:
+			从后向前遍历数组
+			每个元素都和他前面的任意一个进行交换
+	*/
+	for i := len(array) - 1; i > 0; i-- {
+		j := random.Intn(i + 1)
+		array[i], array[j] = array[j], array[i]
+	}
 }
