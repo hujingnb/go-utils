@@ -8,8 +8,5 @@ func ExampleRandRange() {
 		panic(err)
 	}
 	fmt.Println(ret)
-	/*
-		Output:
-			2
-	*/
+	// Output: 2
 }

@@ -11,17 +11,20 @@ func ExampleChunk() {
 		return
 	}
 	fmt.Println(ret)
-	/*
-		Output:
-			[[1, 2], [3, 4]]
-	*/
+	// Output: [[1 2] [3 4]]
 }
 
 // 随机打乱数组顺序
 func ExampleShuffle() {
 	arr := []int{1, 2, 3}
 	Shuffle(arr)
-	fmt.Println(arr)
+	for _, item := range arr {
+		fmt.Println(item)
+	}
+	// Unordered Output:
+	// 1
+	// 2
+	// 3
 }
 
 // 判断元素是否在数组中
@@ -29,6 +32,5 @@ func ExampleInArray() {
 	arr := []int{1, 2, 3}
 	ret := InArray(arr, 2)
 	fmt.Println(ret)
-	// Output:
-	//  true
+	// Output: true
 }
