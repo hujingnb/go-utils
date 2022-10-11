@@ -1,5 +1,5 @@
 // Package hex 用于各个进制之间的转换
-package hex
+package hhex
 
 import (
 	"errors"
