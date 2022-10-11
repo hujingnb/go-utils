@@ -10,8 +10,5 @@ func ExampleToMap() {
 	}
 	m := ToMap(s, "json")
 	fmt.Println(m)
-	/*
-		Output:
-			{"data": "1234}
-	*/
+	// Output: map[data:1234]
 }

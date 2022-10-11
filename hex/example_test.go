@@ -12,10 +12,7 @@ func ExampleInput() {
 		panic(err)
 	}
 	fmt.Println(num)
-	/*
-		OutPut:
-			999, nil
-	*/
+	// OutPut: 999
 }
 
 // ExampleOutput 将数字转为目标进制
@@ -28,8 +25,5 @@ func ExampleOutput() {
 		panic(err)
 	}
 	fmt.Println(numStr)
-	/*
-		OutPut:
-			"1330", nil
-	*/
+	// OutPut: 532
 }

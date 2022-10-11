@@ -37,3 +37,13 @@ func Shuffle[T any](array []T) {
 		array[i], array[j] = array[j], array[i]
 	}
 }
+
+// InArray 检查元素是否在数组中
+func InArray[T comparable](array []T, searchData T) bool {
+	for _, item := range array {
+		if item == searchData {
+			return true
+		}
+	}
+	return false
+}
