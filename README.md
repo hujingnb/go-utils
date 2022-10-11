@@ -14,3 +14,4 @@
 
 * `hex`: 不同进制的数字操作. [文档](./hex/README.md)
 * `string`: 字符串操作. [文档](./string/README.md)
+* `array`: 数组操作. [文档](./array/README.md)

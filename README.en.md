@@ -12,3 +12,4 @@ this project Conform `godoc`. please check local document by command `godoc -htt
 
 * `hex`: dispose number on different hex.[doc](./hex/README.en.md)
 * `string`: dispose string. [doc](./string/README.en.md)
+* `array`: dispose array. [文档](./array/README.en.md)
