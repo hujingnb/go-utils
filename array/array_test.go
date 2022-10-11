@@ -108,3 +108,56 @@ func TestInArray(t *testing.T) {
 		})
 	}
 }
+
+func TestUnique(t *testing.T) {
+	testList := []struct {
+		Input  []int
+		Output []int
+	}{
+		{
+			Input:  []int{1, 2, 3, 2, 3},
+			Output: []int{1, 2, 3},
+		},
+		{
+			Input:  []int{1, 2, 2, 2, 3},
+			Output: []int{1, 2, 3},
+		},
+	}
+	for index, test := range testList {
+		runName := fmt.Sprintf("%d", index)
+		t.Run(runName, func(t *testing.T) {
+			ret := Unique(test.Input)
+			if !Equal(test.Output, ret) {
+				t.Error("unique is error")
+			}
+		})
+	}
+}
+
+func TestEqual(t *testing.T) {
+	testList := []struct {
+		Input1 []int
+		Input2 []int
+		Result bool
+	}{
+		{
+			Input1: []int{1, 2, 3},
+			Input2: []int{1, 2, 3},
+			Result: true,
+		},
+		{
+			Input1: []int{1, 2, 3},
+			Input2: []int{1, 2, 3, 4},
+			Result: false,
+		},
+	}
+	for index, test := range testList {
+		runName := fmt.Sprintf("%d", index)
+		t.Run(runName, func(t *testing.T) {
+			ret := Equal(test.Input1, test.Input2)
+			if ret != test.Result {
+				t.Error("equal is error")
+			}
+		})
+	}
+}

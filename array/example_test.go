@@ -34,3 +34,20 @@ func ExampleInArray() {
 	fmt.Println(ret)
 	// Output: true
 }
+
+// 数组去重
+func ExampleUnique() {
+	arr := []int{1, 2, 2, 3}
+	ret := Unique(arr)
+	fmt.Println(ret)
+	// Output: [1 2 3]
+}
+
+// 判断数组是否相等
+func ExampleEqual() {
+	arr1 := []int{1, 2}
+	arr2 := []int{1, 2}
+	ret := Equal(arr1, arr2)
+	fmt.Println(ret)
+	// Output: true
+}

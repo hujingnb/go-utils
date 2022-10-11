@@ -47,3 +47,31 @@ func InArray[T comparable](array []T, searchData T) bool {
 	}
 	return false
 }
+
+// Unique 数组去重
+func Unique[T comparable](array []T) []T {
+	size := len(array)
+	result := make([]T, 0, size)
+	tmpMap := make(map[T]bool)
+	for _, item := range array {
+		if _, ok := tmpMap[item]; !ok {
+			tmpMap[item] = true
+			result = append(result, item)
+		}
+	}
+	return result
+}
+
+// Equal 比较两数组是否相等
+func Equal[T comparable](arr1, arr2 []T) bool {
+	if len(arr1) != len(arr2) {
+		return false
+	}
+	size := len(arr1)
+	for i := 0; i < size; i++ {
+		if arr1[i] != arr2[i] {
+			return false
+		}
+	}
+	return true
+}
