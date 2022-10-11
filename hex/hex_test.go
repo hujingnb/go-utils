@@ -258,3 +258,222 @@ func TestInput(t *testing.T) {
 		})
 	}
 }
+
+func TestOutput(t *testing.T) {
+	testList := []struct {
+		num    int64
+		radix  int
+		result string
+		err    string
+	}{
+		{ // 0
+			num:    0,
+			radix:  10,
+			result: "0",
+		},
+		{ // 基数范围向下超出
+			num:   10,
+			radix: 1,
+			err:   fmt.Sprintf("radix min %d and max %d", minRadix, maxRadix),
+		},
+		{ // 基数范围向上超出
+			num:   10,
+			radix: 50,
+			err:   fmt.Sprintf("radix min %d and max %d", minRadix, maxRadix),
+		},
+		{ // 各进制正常数据
+			num:    999,
+			radix:  2,
+			result: "1111100111",
+		},
+		{
+			num:    999,
+			radix:  3,
+			result: "1101000",
+		},
+		{
+			num:    999,
+			radix:  4,
+			result: "33213",
+		},
+		{
+			num:    999,
+			radix:  5,
+			result: "12444",
+		},
+		{
+			num:    999,
+			radix:  6,
+			result: "4343",
+		},
+		{
+			num:    999,
+			radix:  7,
+			result: "2625",
+		},
+		{
+			num:    999,
+			radix:  8,
+			result: "1747",
+		},
+		{
+			num:    999,
+			radix:  9,
+			result: "1330",
+		},
+		{
+			num:    999,
+			radix:  10,
+			result: "999",
+		},
+		{
+			num:    999,
+			radix:  11,
+			result: "829",
+		},
+		{
+			num:    999,
+			radix:  12,
+			result: "6b3",
+		},
+		{
+			num:    999,
+			radix:  13,
+			result: "5bb",
+		},
+		{
+			num:    999,
+			radix:  14,
+			result: "515",
+		},
+		{
+			num:    999,
+			radix:  15,
+			result: "469",
+		},
+		{
+			num:    999,
+			radix:  16,
+			result: "3e7",
+		},
+		{
+			num:    999,
+			radix:  17,
+			result: "37d",
+		},
+		{
+			num:    999,
+			radix:  18,
+			result: "319",
+		},
+		{
+			num:    999,
+			radix:  19,
+			result: "2eb",
+		},
+		{
+			num:    999,
+			radix:  20,
+			result: "29j",
+		},
+		{
+			num:    999,
+			radix:  21,
+			result: "25c",
+		},
+		{
+			num:    999,
+			radix:  22,
+			result: "219",
+		},
+		{
+			num:    999,
+			radix:  23,
+			result: "1ka",
+		},
+		{
+			num:    999,
+			radix:  24,
+			result: "1hf",
+		},
+		{
+			num:    999,
+			radix:  25,
+			result: "1eo",
+		},
+		{
+			num:    999,
+			radix:  26,
+			result: "1cb",
+		},
+		{
+			num:    999,
+			radix:  27,
+			result: "1a0",
+		},
+		{
+			num:    999,
+			radix:  28,
+			result: "17j",
+		},
+		{
+			num:    999,
+			radix:  29,
+			result: "15d",
+		},
+		{
+			num:    999,
+			radix:  30,
+			result: "139",
+		},
+		{
+			num:    999,
+			radix:  31,
+			result: "117",
+		},
+		{
+			num:    999,
+			radix:  32,
+			result: "v7",
+		},
+		{
+			num:    999,
+			radix:  33,
+			result: "u9",
+		},
+		{
+			num:    999,
+			radix:  34,
+			result: "td",
+		},
+		{
+			num:    999,
+			radix:  35,
+			result: "sj",
+		},
+		{
+			num:    999,
+			radix:  36,
+			result: "rr",
+		},
+	}
+	// 进行测试
+	for _, test := range testList {
+		runName := fmt.Sprintf("test_%d_%d", test.num, test.radix)
+		t.Run(runName, func(t *testing.T) {
+			value, err := Output(test.num, test.radix)
+			if test.err != "" {
+				if err == nil || err.Error() != test.err {
+					t.Error("this input need has error")
+				}
+			} else {
+				if err != nil {
+					t.Error("this input don't need has error")
+				}
+			}
+			if value != test.result {
+				t.Error("this input result is error")
+			}
+		})
+	}
+}

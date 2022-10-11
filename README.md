@@ -1,6 +1,10 @@
 # go-utils
 
+[english](./README.en.md)
+
 一些常用的函数集合
+
+如果你遇到了类似的问题但在这里没有找到, 欢迎提交`issue`或`PR`, `PR`请提交到`dev`分支.
 
 安装: `go get github.com/hujingnb/go-utils`
 

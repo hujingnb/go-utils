@@ -17,7 +17,14 @@ const (
 // 每次进位的值
 const baseIndex = "0123456789abcdefghijklmnopqrstuvwxyz"
 
-// Input 按照指定进制读取字符串
+/*
+Input 按照指定进制读取字符串
+
+参数如下:
+
+ numStr: 输入字符串
+ radix: 进制基数
+*/
 func Input(numStr string, radix int) (int64, error) {
 	numStr = strings.ToLower(numStr)
 	// 空字符串
@@ -49,4 +56,30 @@ func Input(numStr string, radix int) (int64, error) {
 		v += float64(index) * math.Pow(float64(radix), float64(length-1-i)) // 倒序
 	}
 	return int64(v), nil
+}
+
+/*
+Output 将10进制数字按照特定进制进行输出
+
+参数如下:
+
+ num: 10进制数字
+ radix: 要转的目标进制
+*/
+func Output(num int64, radix int) (string, error) {
+	if num == 0 {
+		return "0", nil
+	}
+	// 检查进制基数范围
+	if radix < minRadix || radix > maxRadix {
+		return "", errors.New(fmt.Sprintf("radix min %d and max %d", minRadix, maxRadix))
+	}
+	// 计算进制字符串
+	numStr := ""
+	for num != 0 {
+		yu := num % int64(radix)
+		numStr = string(baseIndex[yu]) + numStr
+		num = num / int64(radix)
+	}
+	return numStr, nil
 }
