@@ -3,6 +3,8 @@ package hstring
 
 import (
 	"bytes"
+	"crypto/md5"
+	"encoding/hex"
 	"fmt"
 	"strconv"
 	"unicode"
@@ -84,4 +86,16 @@ func ToString(value interface{}) string {
 	default:
 		return fmt.Sprintf("%+v", value)
 	}
+}
+
+// Get32Md5 32位md5
+func Get32Md5(s string) string {
+	m := md5.New()
+	m.Write([]byte(s))
+	return hex.EncodeToString(m.Sum(nil))
+}
+
+// Get16Md5 16位md5
+func Get16Md5(s string) string {
+	return Get32Md5(s)[8:24]
 }

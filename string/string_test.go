@@ -1,7 +1,6 @@
 package hstring
 
 import (
-	"fmt"
 	"testing"
 )
 
@@ -24,8 +23,7 @@ func TestReverse(t *testing.T) {
 		},
 	}
 	for _, test := range testList {
-		runName := fmt.Sprintf("test_%s", test.Input)
-		t.Run(runName, func(t *testing.T) {
+		t.Run(test.Input, func(t *testing.T) {
 			ret := Reverse(test.Input)
 			if ret != test.Output {
 				t.Error("this input is error")
@@ -57,8 +55,7 @@ func TestSnakeToCamel(t *testing.T) {
 		},
 	}
 	for _, test := range testList {
-		runName := fmt.Sprintf("test_%s", test.Input)
-		t.Run(runName, func(t *testing.T) {
+		t.Run(test.Input, func(t *testing.T) {
 			ret := SnakeToCamel(test.Input)
 			if ret != test.Output {
 				t.Error("output is error")
@@ -90,8 +87,7 @@ func TestCamelToSnake(t *testing.T) {
 		},
 	}
 	for _, test := range testList {
-		runName := fmt.Sprintf("test_%s", test.Input)
-		t.Run(runName, func(t *testing.T) {
+		t.Run(test.Input, func(t *testing.T) {
 			ret := CamelToSnake(test.Input)
 			if ret != test.Output {
 				t.Error("output is error")
@@ -124,4 +120,44 @@ func TestToString(t *testing.T) {
 	check([]byte{'h', 'e', 'l', 'l', 'o'}, "hello")
 	m := map[string]string{"a": "a"}
 	check(m, "map[a:a]")
+}
+
+func TestGet32Md5(t *testing.T) {
+	testList := []struct {
+		Input  string
+		Output string
+	}{
+		{
+			Input:  "hello",
+			Output: "5d41402abc4b2a76b9719d911017c592",
+		},
+	}
+	for _, test := range testList {
+		t.Run(test.Input, func(t *testing.T) {
+			ret := Get32Md5(test.Input)
+			if ret != test.Output {
+				t.Error("output error")
+			}
+		})
+	}
+}
+
+func TestGet16Md5(t *testing.T) {
+	testList := []struct {
+		Input  string
+		Output string
+	}{
+		{
+			Input:  "hello",
+			Output: "bc4b2a76b9719d91",
+		},
+	}
+	for _, test := range testList {
+		t.Run(test.Input, func(t *testing.T) {
+			ret := Get16Md5(test.Input)
+			if ret != test.Output {
+				t.Error("output error")
+			}
+		})
+	}
 }

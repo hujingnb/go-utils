@@ -42,3 +42,23 @@ func ExampleToString() {
 			"5"
 	*/
 }
+
+func ExampleGet32Md5() {
+	s := "hello"
+	ret := Get32Md5(s)
+	fmt.Println(ret)
+	/*
+		Output:
+			5d41402abc4b2a76b9719d911017c592
+	*/
+}
+
+func ExampleGet16Md5() {
+	s := "hello"
+	ret := Get16Md5(s)
+	fmt.Println(ret)
+	/*
+		Output:
+			bc4b2a76b9719d91
+	*/
+}
