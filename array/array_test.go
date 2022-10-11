@@ -80,3 +80,31 @@ func TestShuffle(t *testing.T) {
 		})
 	}
 }
+
+func TestInArray(t *testing.T) {
+	testList := []struct {
+		Input  []int
+		Search int
+		Result bool
+	}{
+		{
+			Input:  []int{1, 2, 3},
+			Search: 2,
+			Result: true,
+		},
+		{
+			Input:  []int{1, 2, 3},
+			Search: 5,
+			Result: false,
+		},
+	}
+	for index, test := range testList {
+		runName := fmt.Sprintf("test_%d", index)
+		t.Run(runName, func(t *testing.T) {
+			ret := InArray(test.Input, test.Search)
+			if ret != test.Result {
+				t.Error("search in array fail")
+			}
+		})
+	}
+}

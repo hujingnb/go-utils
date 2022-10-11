@@ -23,3 +23,12 @@ func ExampleShuffle() {
 	Shuffle(arr)
 	fmt.Println(arr)
 }
+
+// 判断元素是否在数组中
+func ExampleInArray() {
+	arr := []int{1, 2, 3}
+	ret := InArray(arr, 2)
+	fmt.Println(ret)
+	// Output:
+	//  true
+}
