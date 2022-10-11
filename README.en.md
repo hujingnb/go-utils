@@ -13,4 +13,5 @@ this project Conform `godoc`. please check local document by command `godoc -htt
 * `hex`: dispose number on different hex.[doc](./hex/README.en.md)
 * `string`: dispose string. [doc](./string/README.en.md)
 * `array`: dispose array. [doc](./array/README.en.md)
-* `map`: [doc](./map/README.en.md)
+* `map`: dispose map [doc](./map/README.en.md)
+* `struct`: dispose struct [文档](./struct/README.en.md)

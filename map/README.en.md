@@ -1,6 +1,6 @@
 dispose map
 
-import: `import "github.com/hujingnb/go-utils/map"`
+import: `import "github.com/hujingnb/go-utils/hmap"`
 
 function:
 
