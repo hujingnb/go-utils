@@ -5,5 +5,8 @@
 主要方法如下: 
 
 * `Reverse`: 字符串反转
+* `CamelToSnake`: 驼峰转下划线
+* `SnakeToCamel`: 下划线转驼峰
+* `ToString`: 将变量转为字符串
 
 示例代码见: [example_test.go](./example_test.go)

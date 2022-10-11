@@ -6,10 +6,13 @@ if you has a question, but don't has. welcome commit `issue` or `PR`. please com
 
 install: `go get github.com/hujingnb/go-utils`
 
-this project Conform `godoc`. please check local document by command `godoc -http:8888`
+this project Conform `godoc`. please check local document by command `godoc -http=:8888`
 
 # package 
 
 * `hex`: dispose number on different hex.[doc](./hex/README.en.md)
 * `string`: dispose string. [doc](./string/README.en.md)
-* `array`: dispose array. [文档](./array/README.en.md)
+* `array`: dispose array. [doc](./array/README.en.md)
+* `map`: dispose map [doc](./map/README.en.md)
+* `struct`: dispose struct [doc](./struct/README.en.md)
+* `number`: dispose number [doc](./number/README.en.md)
