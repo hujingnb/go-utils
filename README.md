@@ -17,3 +17,4 @@
 * `array`: 数组操作. [文档](./array/README.md)
 * `map`: map操作. [文档](./map/README.md)
 * `struct`: 结构体操作 [文档](./struct/README.md)
+* `number`: 数组操作 [文档](./number/README.md)

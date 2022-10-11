@@ -14,4 +14,5 @@ this project Conform `godoc`. please check local document by command `godoc -htt
 * `string`: dispose string. [doc](./string/README.en.md)
 * `array`: dispose array. [doc](./array/README.en.md)
 * `map`: dispose map [doc](./map/README.en.md)
-* `struct`: dispose struct [文档](./struct/README.en.md)
+* `struct`: dispose struct [doc](./struct/README.en.md)
+* `number`: dispose number [doc](./number/README.en.md)
