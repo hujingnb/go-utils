@@ -1,4 +1,4 @@
-// Package hex 用于各个进制之间的转换
+// Package hhex 用于各个进制之间的转换
 package hhex
 
 import (
