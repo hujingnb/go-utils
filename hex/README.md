@@ -1,6 +1,6 @@
 用于进制之间的转换. 
 
-导入: `import "github.com/hujingnb/go-utils/hex"`
+导入: `import "github.com/hujingnb/go-utils/hhex"`
 
 主要方法如下: 
 

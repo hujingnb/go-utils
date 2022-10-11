@@ -1,6 +1,6 @@
 change number hex. 
 
-import: `import "github.com/hujingnb/go-utils/hex"`
+import: `import "github.com/hujingnb/go-utils/hhex"`
 
 function: 
 
