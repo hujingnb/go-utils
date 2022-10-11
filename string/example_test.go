@@ -51,6 +51,14 @@ func ExampleGet16Md5() {
 	// Output: bc4b2a76b9719d91
 }
 
+// sha1
+func ExampleGetSha1() {
+	s := "hello"
+	ret := GetSha1(s)
+	fmt.Println(ret)
+	// Output: aaf4c61ddcc5e8a2dabede0f3b482cd9aea9434d
+}
+
 // 字符串填充
 func ExamplePad() {
 	ret := Pad(1, 5, "0", PadLeft)

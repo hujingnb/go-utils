@@ -163,6 +163,26 @@ func TestGet16Md5(t *testing.T) {
 	}
 }
 
+func TestGetSha1(t *testing.T) {
+	testList := []struct {
+		Input  string
+		Output string
+	}{
+		{
+			Input:  "hello",
+			Output: "aaf4c61ddcc5e8a2dabede0f3b482cd9aea9434d",
+		},
+	}
+	for _, test := range testList {
+		t.Run(test.Input, func(t *testing.T) {
+			ret := GetSha1(test.Input)
+			if ret != test.Output {
+				t.Error("output error")
+			}
+		})
+	}
+}
+
 func TestPad(t *testing.T) {
 	testList := []struct {
 		input  interface{}
