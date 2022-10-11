@@ -47,3 +47,95 @@ func InArray[T comparable](array []T, searchData T) bool {
 	}
 	return false
 }
+
+// Unique 数组去重
+func Unique[T comparable](array []T) []T {
+	size := len(array)
+	result := make([]T, 0, size)
+	tmpMap := make(map[T]bool)
+	for _, item := range array {
+		if _, ok := tmpMap[item]; !ok {
+			tmpMap[item] = true
+			result = append(result, item)
+		}
+	}
+	return result
+}
+
+// Equal 比较两数组是否相等
+func Equal[T comparable](arr1, arr2 []T) bool {
+	if len(arr1) != len(arr2) {
+		return false
+	}
+	size := len(arr1)
+	for i := 0; i < size; i++ {
+		if arr1[i] != arr2[i] {
+			return false
+		}
+	}
+	return true
+}
+
+// Intersect 多个数组取交集
+func Intersect[T comparable](arrList ...[]T) []T {
+	arrLen := len(arrList)
+	if arrLen <= 0 {
+		return nil
+	}
+	if arrLen == 1 {
+		return arrList[1]
+	}
+	// 统计第一个数组中存在的数据
+	dataMap := make(map[T]bool)
+	for _, item := range arrList[0] {
+		dataMap[item] = true
+	}
+	// 依次遍历后面的所有数组, 将在后续数组中不存在的数据剔除
+	for i := 1; i < arrLen; i++ {
+		tmpDataMap := make(map[T]bool)
+		for _, item := range arrList[i] {
+			if _, ok := dataMap[item]; ok {
+				tmpDataMap[item] = true
+			}
+		}
+		dataMap = tmpDataMap
+	}
+	// 生成返回结果
+	result := make([]T, 0, len(dataMap))
+	for k, _ := range dataMap {
+		result = append(result, k)
+	}
+	return result
+}
+
+// Diff 计算数组的差集
+// 即数据在 arr 中, 但不在其他数组中
+func Diff[T comparable](arr []T, arrList ...[]T) []T {
+	if len(arr) <= 0 {
+		return nil
+	}
+	if len(arrList) <= 0 {
+		return arr
+	}
+	// 统计数组中的数据
+	dataMap := make(map[T]bool)
+	for _, item := range arr {
+		dataMap[item] = true
+	}
+	// 遍历其他数组, 将其他数组中存在的数据去掉
+	for _, itemArr := range arrList {
+		for _, item := range itemArr {
+			if _, ok := dataMap[item]; ok {
+				dataMap[item] = false
+			}
+		}
+	}
+	// 返回结果
+	result := make([]T, 0, len(dataMap))
+	for k, v := range dataMap {
+		if v {
+			result = append(result, k)
+		}
+	}
+	return result
+}

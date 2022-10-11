@@ -4,6 +4,7 @@ package hstring
 import (
 	"bytes"
 	"crypto/md5"
+	"crypto/sha1"
 	"encoding/hex"
 	"fmt"
 	"strconv"
@@ -98,4 +99,45 @@ func Get32Md5(s string) string {
 // Get16Md5 16位md5
 func Get16Md5(s string) string {
 	return Get32Md5(s)[8:24]
+}
+
+// GetSha1 sha1
+func GetSha1(str string) string {
+	hash := sha1.New()
+	hash.Write([]byte(str))
+	return hex.EncodeToString(hash.Sum(nil))
+}
+
+type PadType int32
+
+const (
+	PadLeft PadType = iota
+	PadRight
+)
+
+// Pad 填充字符串到指定长度
+// 参数如下:
+//  input 待处理数据, 可以是int/string/float 等等
+//  length 指定长度
+//  padStr 填充的字符串
+//  _type 指定填充类型, 填充在左或在右
+func Pad(input interface{}, length int, padStr string, _type PadType) string {
+	s := ToString(input)
+	// 长度足够, 直接返回
+	l := len(s)
+	if l >= length {
+		return s
+	}
+	// 达到指定长度需要补充的字符串
+	output := ""
+	for i := 1; i <= length-l; i = i + len(padStr) {
+		output += padStr
+	}
+	if _type == PadLeft {
+		return output + s
+	} else if _type == PadRight {
+		return s + output
+	} else {
+		panic("type is error")
+	}
 }

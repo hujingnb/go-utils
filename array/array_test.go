@@ -108,3 +108,128 @@ func TestInArray(t *testing.T) {
 		})
 	}
 }
+
+func TestUnique(t *testing.T) {
+	testList := []struct {
+		Input  []int
+		Output []int
+	}{
+		{
+			Input:  []int{1, 2, 3, 2, 3},
+			Output: []int{1, 2, 3},
+		},
+		{
+			Input:  []int{1, 2, 2, 2, 3},
+			Output: []int{1, 2, 3},
+		},
+	}
+	for index, test := range testList {
+		runName := fmt.Sprintf("%d", index)
+		t.Run(runName, func(t *testing.T) {
+			ret := Unique(test.Input)
+			if !Equal(test.Output, ret) {
+				t.Error("unique is error")
+			}
+		})
+	}
+}
+
+func TestEqual(t *testing.T) {
+	testList := []struct {
+		Input1 []int
+		Input2 []int
+		Result bool
+	}{
+		{
+			Input1: []int{1, 2, 3},
+			Input2: []int{1, 2, 3},
+			Result: true,
+		},
+		{
+			Input1: []int{1, 2, 3},
+			Input2: []int{1, 2, 3, 4},
+			Result: false,
+		},
+	}
+	for index, test := range testList {
+		runName := fmt.Sprintf("%d", index)
+		t.Run(runName, func(t *testing.T) {
+			ret := Equal(test.Input1, test.Input2)
+			if ret != test.Result {
+				t.Error("equal is error")
+			}
+		})
+	}
+}
+
+func TestIntersect(t *testing.T) {
+	testList := []struct {
+		Input  [][]int
+		Output []int
+	}{
+		{
+			Input: [][]int{
+				{1, 2, 3, 4},
+				{2, 3, 4, 5},
+				{3, 4, 5, 6},
+			},
+			Output: []int{3, 4},
+		},
+	}
+	for index, test := range testList {
+		runName := fmt.Sprintf("%d", index)
+		t.Run(runName, func(t *testing.T) {
+			ret := Intersect(test.Input...)
+			// 结果可能乱序, 比较内容是否一致
+			tmpMap := make(map[int]bool)
+			if len(ret) != len(test.Output) {
+				t.Error("intersect result error")
+			}
+			for _, item := range ret {
+				tmpMap[item] = true
+			}
+			for _, item := range test.Output {
+				if _, ok := tmpMap[item]; !ok {
+					t.Error("intersect result error")
+					break
+				}
+			}
+		})
+	}
+}
+
+func TestDiff(t *testing.T) {
+	testList := []struct {
+		Input  [][]int
+		Output []int
+	}{
+		{
+			Input: [][]int{
+				{1, 2, 3, 4, 5, 6},
+				{4, 5, 6, 8, 9},
+				{2, 10, 11},
+			},
+			Output: []int{1, 3},
+		},
+	}
+	for index, test := range testList {
+		runName := fmt.Sprintf("%d", index)
+		t.Run(runName, func(t *testing.T) {
+			ret := Diff(test.Input[0], test.Input[1:]...)
+			// 结果可能乱序, 比较内容是否一致
+			tmpMap := make(map[int]bool)
+			if len(ret) != len(test.Output) {
+				t.Error("diff result error")
+			}
+			for _, item := range ret {
+				tmpMap[item] = true
+			}
+			for _, item := range test.Output {
+				if _, ok := tmpMap[item]; !ok {
+					t.Error("diff result error")
+					break
+				}
+			}
+		})
+	}
+}
