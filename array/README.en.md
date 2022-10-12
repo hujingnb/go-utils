@@ -11,5 +11,11 @@ function:
 * `Equal`: check array is same
 * `Intersect`: get intersection of arrays
 * `Diff`: get difference of arrays
+* sort:
+    * `SortBubble`
+    * `SortInsert`: insertion sort
+    * `SortSelect`: selection sort
+    * `SortQuick`: quick sort
+    * `SortMerge`: merge sort
 
 example code: [example_test.go](./example_test.go)

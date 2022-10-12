@@ -11,5 +11,11 @@
 * `Equal`: 判断两数组是否相等
 * `Intersect`: 取数组交集
 * `Diff`: 取数组差集
+* 排序操作: 
+  * `SortBubble`: 冒泡排序
+  * `SortInsert`: 插入排序
+  * `SortSelect`: 选择排序
+  * `SortQuick`: 快排
+  * `SortMerge`: 归并排序
 
 示例代码见: [example_test.go](./example_test.go)
