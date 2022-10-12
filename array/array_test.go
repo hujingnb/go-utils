@@ -110,6 +110,34 @@ func TestInArray(t *testing.T) {
 	}
 }
 
+func TestIndexOf(t *testing.T) {
+	testList := []struct {
+		Input  []int
+		Search int
+		Result int
+	}{
+		{
+			Input:  []int{1, 2, 3},
+			Search: 2,
+			Result: 1,
+		},
+		{
+			Input:  []int{1, 2, 3},
+			Search: 5,
+			Result: -1,
+		},
+	}
+	for index, test := range testList {
+		runName := fmt.Sprintf("test_%d", index)
+		t.Run(runName, func(t *testing.T) {
+			ret := IndexOf(test.Input, test.Search)
+			if ret != test.Result {
+				t.Error("search array data index fail")
+			}
+		})
+	}
+}
+
 func TestUnique(t *testing.T) {
 	testList := []struct {
 		Input  []int

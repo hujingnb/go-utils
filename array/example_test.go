@@ -35,6 +35,14 @@ func ExampleInArray() {
 	// Output: true
 }
 
+// 获取元素在数组中的索引
+func ExampleIndexOf() {
+	arr := []int{1, 2, 3}
+	ret := IndexOf(arr, 2)
+	fmt.Println(ret)
+	// Output: 1
+}
+
 // 数组去重
 func ExampleUnique() {
 	arr := []int{1, 2, 2, 3}

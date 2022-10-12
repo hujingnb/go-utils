@@ -40,12 +40,18 @@ func Shuffle[T any](array []T) {
 
 // InArray 检查元素是否在数组中
 func InArray[T comparable](array []T, searchData T) bool {
-	for _, item := range array {
+	return IndexOf(array, searchData) >= 0
+
+}
+
+// IndexOf 获取元素在数组中的索引. 若不存在则返回 -1
+func IndexOf[T comparable](array []T, searchData T) int {
+	for index, item := range array {
 		if item == searchData {
-			return true
+			return index
 		}
 	}
-	return false
+	return -1
 }
 
 // Unique 数组去重
