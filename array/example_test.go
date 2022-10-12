@@ -35,7 +35,7 @@ func ExampleInArray() {
 	// Output: true
 }
 
-// 获取元素在数组中的索引
+// 获取元素在数组中首次出现的索引
 func ExampleIndexOf() {
 	arr := []int{1, 2, 3}
 	ret := IndexOf(arr, 2)

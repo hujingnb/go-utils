@@ -44,7 +44,7 @@ func InArray[T comparable](array []T, searchData T) bool {
 
 }
 
-// IndexOf 获取元素在数组中的索引. 若不存在则返回 -1
+// IndexOf 获取元素在数组中首次出现的索引. 若不存在则返回 -1
 func IndexOf[T comparable](array []T, searchData T) int {
 	for index, item := range array {
 		if item == searchData {
