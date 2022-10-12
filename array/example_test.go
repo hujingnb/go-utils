@@ -1,6 +1,9 @@
 package harray
 
-import "fmt"
+import (
+	"fmt"
+	hstring "github.com/hujingnb/go-utils/string"
+)
 
 // 按照指定长度切割数组
 func ExampleChunk() {
@@ -155,4 +158,18 @@ func ExampleSortMerge() {
 	})
 	fmt.Println(arr)
 	// Output: [1 5 6 7 8]
+}
+
+// 使用种子获取确定的随机数据
+func ExampleGetSureRandArr() {
+	seed := int64(500)
+	n := 20
+	ret1 := GetSureRandArr(seed, n, 0, 19)
+	fmt.Println(hstring.ToString(ret1))
+	// 使用相同的随机种子, 获取部分随机数
+	ret2 := GetSureRandArr(seed, n, 2, 5)
+	fmt.Println(hstring.ToString(ret2))
+	// Output:
+	// [14 7 10 17 2 5 15 16 3 12 11 4 1 8 13 19 9 18 0 6]
+	// [10 17 2 5]
 }

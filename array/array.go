@@ -171,3 +171,39 @@ func BinarySearch[T comparable](arr []T, comparator func(T) int) int {
 	}
 	return -1
 }
+
+/*
+GetSureRandArr 使用一个确定的种子生成一个随机列表.
+列表的长度为 n, 元素为 0 ~ n-1
+返回结果为列表中获取一段数据, [start, end]
+ 其中为左右闭区间, start 从0开始
+注意, 获取的数据越靠后, 则耗费的时间越久
+
+此函数可用于重复生成随机队列, 保存好随机种子后, 每次生成的队列均相同
+
+*/
+func GetSureRandArr(seed int64, n, start, end int) []int {
+	if end >= n { // 取值不可超出范围
+		end = n - 1
+	}
+	if start > end {
+		panic("start need less then end")
+	}
+	r := rand.New(rand.NewSource(seed))
+	// 随机的数字队列
+	randArr := make([]int, n)
+	for i := 0; i < n; i++ {
+		randArr[i] = i
+	}
+	// 生成不重复的随机队列
+	for i := 0; i < n; i++ {
+		// 与后面的随机元素交换
+		randIndex := r.Intn(n-i) + i
+		randArr[randIndex], randArr[i] = randArr[i], randArr[randIndex]
+		// 数据足够返回了
+		if i >= end {
+			break
+		}
+	}
+	return randArr[start : end+1]
+}

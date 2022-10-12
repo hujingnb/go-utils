@@ -292,3 +292,57 @@ func TestBinarySearch(t *testing.T) {
 		})
 	}
 }
+
+func TestGetSureRandArr(t *testing.T) {
+	testList := []struct {
+		seed   int64
+		n      int
+		start  int
+		end    int
+		output []int
+	}{
+		{
+			seed:   500,
+			n:      20,
+			start:  0,
+			end:    21,
+			output: []int{14, 7, 10, 17, 2, 5, 15, 16, 3, 12, 11, 4, 1, 8, 13, 19, 9, 18, 0, 6},
+		},
+		{
+			seed:   500,
+			n:      20,
+			start:  0,
+			end:    19,
+			output: []int{14, 7, 10, 17, 2, 5, 15, 16, 3, 12, 11, 4, 1, 8, 13, 19, 9, 18, 0, 6},
+		},
+		{
+			seed:   500,
+			n:      20,
+			start:  0,
+			end:    3,
+			output: []int{14, 7, 10, 17},
+		},
+		{
+			seed:   500,
+			n:      20,
+			start:  17,
+			end:    19,
+			output: []int{18, 0, 6},
+		},
+		{
+			seed:   500,
+			n:      20,
+			start:  5,
+			end:    9,
+			output: []int{5, 15, 16, 3, 12},
+		},
+	}
+	for index, test := range testList {
+		t.Run(fmt.Sprintf("%d", index), func(t *testing.T) {
+			ret := GetSureRandArr(test.seed, test.n, test.start, test.end)
+			if !Equal(ret, test.output) {
+				t.Error("sure rand arr is error")
+			}
+		})
+	}
+}

@@ -13,6 +13,7 @@ function:
 * `Intersect`: get intersection of arrays
 * `Diff`: get difference of arrays
 * `BinarySearch`: binary search
+* `GetSureRandArr`: get sure rand array by same seed
 * sort:
     * `SortBubble`
     * `SortInsert`: insertion sort
