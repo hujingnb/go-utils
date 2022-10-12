@@ -8,6 +8,7 @@ import (
 	"encoding/hex"
 	"fmt"
 	"strconv"
+	"strings"
 	"unicode"
 )
 
@@ -140,4 +141,15 @@ func Pad(input interface{}, length int, padStr string, _type PadType) string {
 	} else {
 		panic("type is error")
 	}
+}
+
+// Join 将数组转为字符串, 按照 seq 进行分割
+// 因为系统库提供的 strings.Join 函数, 参数只支持 string
+// 故这里重写一个方法, 可接收任意参数
+func Join[T any](array []T, seq string) string {
+	joinArray := make([]string, 0, len(array))
+	for _, item := range array {
+		joinArray = append(joinArray, ToString(item))
+	}
+	return strings.Join(joinArray, seq)
 }

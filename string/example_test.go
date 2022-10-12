@@ -65,3 +65,10 @@ func ExamplePad() {
 	fmt.Println(ret)
 	// Output: 00001
 }
+
+func ExampleJoin() {
+	arr := []int{1, 2, 3}
+	ret := Join(arr, ",")
+	fmt.Println(ret)
+	// Output: 1,2,3
+}

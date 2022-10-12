@@ -12,5 +12,6 @@ function:
 * `Get16Md5`: get MD5 Hash Generator 16 Characters
 * `GetSha1`: get sha1
 * `Pad`: Pad a string to a certain length with another string
+* `Join`: Join array elements with a string
 
 example code: [example_test.go](./example_test.go)

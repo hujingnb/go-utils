@@ -251,3 +251,25 @@ func TestPad(t *testing.T) {
 		})
 	}
 }
+
+func TestJoin(t *testing.T) {
+	testList := []struct {
+		Input  []interface{}
+		Seq    string
+		Output string
+	}{
+		{
+			Input:  []interface{}{1, 2, 3},
+			Seq:    ",",
+			Output: "1,2,3",
+		},
+	}
+	for _, test := range testList {
+		t.Run(ToString(test.Input), func(t *testing.T) {
+			ret := Join(test.Input, test.Seq)
+			if ret != test.Output {
+				t.Error("output error")
+			}
+		})
+	}
+}
