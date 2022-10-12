@@ -55,3 +55,15 @@ func TestSortInsert(t *testing.T) {
 		})
 	}
 }
+
+func TestSortSelect(t *testing.T) {
+	for _, test := range getTestList() {
+		t.Run(hstring.ToString(test.input), func(t *testing.T) {
+			in := test.input
+			SortSelect(in, test.comparator)
+			if !Equal(in, test.output) {
+				t.Error("select sort error")
+			}
+		})
+	}
+}

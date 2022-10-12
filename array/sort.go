@@ -32,5 +32,22 @@ func SortInsert[T any](arr []T, comparator func(a, b T) int) {
 		}
 		arr[j+1] = tmpData
 	}
+}
 
+// SortSelect 选择排序
+func SortSelect[T any](arr []T, comparator func(a, b T) int) {
+	minIndex := 0
+	length := len(arr)
+	// 对数组进行遍历, 不需要遍历最后一个元素, 因为后面没有元素进行比较了
+	for i := 0; i < length-1; i++ {
+		minIndex = i // 记录最小元素下标
+		// 遍历后面的所有元素. 找到其中最小的元素
+		for j := i + 1; j < length; j++ {
+			if comparator(arr[j], arr[minIndex]) <= 0 {
+				minIndex = j
+			}
+		}
+		// 将最小的元素拿过来, 互换位置
+		arr[i], arr[minIndex] = arr[minIndex], arr[i]
+	}
 }

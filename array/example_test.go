@@ -97,3 +97,13 @@ func ExampleSortInsert() {
 	fmt.Println(arr)
 	// Output: [1 5 6 7 8]
 }
+
+// 选择排序
+func ExampleSortSelect() {
+	arr := []int{1, 7, 5, 8, 6}
+	SortSelect(arr, func(a int, b int) int {
+		return a - b
+	})
+	fmt.Println(arr)
+	// Output: [1 5 6 7 8]
+}

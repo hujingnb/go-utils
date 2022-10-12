@@ -14,5 +14,6 @@ function:
 * sort:
     * `SortBubble`
     * `SortInsert`: insertion sort
+    * `SortSelect`: selection sort
 
 example code: [example_test.go](./example_test.go)
