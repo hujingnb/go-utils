@@ -77,3 +77,13 @@ func ExampleDiff() {
 	// 1
 	// 4
 }
+
+// 冒泡排序
+func ExampleSortBubble() {
+	arr := []int{1, 7, 5, 8, 6}
+	SortBubble(arr, func(a int, b int) int {
+		return a - b
+	})
+	fmt.Println(arr)
+	// Output: [1 5 6 7 8]
+}
