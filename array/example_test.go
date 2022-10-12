@@ -107,3 +107,13 @@ func ExampleSortSelect() {
 	fmt.Println(arr)
 	// Output: [1 5 6 7 8]
 }
+
+// 快排
+func ExampleSortQuick() {
+	arr := []int{1, 7, 5, 8, 6}
+	SortQuick(arr, func(a int, b int) int {
+		return a - b
+	})
+	fmt.Println(arr)
+	// Output: [1 5 6 7 8]
+}

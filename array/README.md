@@ -15,5 +15,6 @@
   * `SortBubble`: 冒泡排序
   * `SortInsert`: 插入排序
   * `SortSelect`: 选择排序
+  * `SortQuick`: 快排
 
 示例代码见: [example_test.go](./example_test.go)

@@ -67,3 +67,15 @@ func TestSortSelect(t *testing.T) {
 		})
 	}
 }
+
+func TestSortQuick(t *testing.T) {
+	for _, test := range getTestList() {
+		t.Run(hstring.ToString(test.input), func(t *testing.T) {
+			in := test.input
+			SortQuick(in, test.comparator)
+			if !Equal(in, test.output) {
+				t.Error("select sort error")
+			}
+		})
+	}
+}

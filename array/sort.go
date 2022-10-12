@@ -51,3 +51,32 @@ func SortSelect[T any](arr []T, comparator func(a, b T) int) {
 		arr[i], arr[minIndex] = arr[minIndex], arr[i]
 	}
 }
+
+// SortQuick 快排
+func SortQuick[T any](arr []T, comparator func(a, b T) int) {
+	sortQuick(arr, 0, len(arr)-1, comparator)
+}
+
+func sortQuick[T any](arr []T, head, tail int, comparator func(a, b T) int) {
+	if head < 0 || tail < 0 || head >= tail ||
+		head >= len(arr) || tail >= len(arr) {
+		return
+	}
+	// 选择基准值
+	middle := arr[head]
+	i, j := head, tail
+	// 将数组拆分
+	for i < j {
+		// 找到后面小于 middle 的值
+		for ; i < j && comparator(arr[j], middle) >= 0; j-- {
+		}
+		arr[i] = arr[j]
+		for ; i < j && comparator(arr[i], middle) <= 0; i++ {
+		}
+		arr[j] = arr[i]
+	}
+	arr[i] = middle
+	// 对两侧数组再次排序
+	sortQuick(arr, head, i-1, comparator)
+	sortQuick(arr, i+1, tail, comparator)
+}
