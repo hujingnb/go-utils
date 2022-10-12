@@ -87,3 +87,13 @@ func ExampleSortBubble() {
 	fmt.Println(arr)
 	// Output: [1 5 6 7 8]
 }
+
+// 插入排序
+func ExampleSortInsert() {
+	arr := []int{1, 7, 5, 8, 6}
+	SortInsert(arr, func(a int, b int) int {
+		return a - b
+	})
+	fmt.Println(arr)
+	// Output: [1 5 6 7 8]
+}

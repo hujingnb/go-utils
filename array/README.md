@@ -13,5 +13,6 @@
 * `Diff`: 取数组差集
 * 排序操作: 
   * `SortBubble`: 冒泡排序
+  * `SortInsert`: 插入排序
 
 示例代码见: [example_test.go](./example_test.go)

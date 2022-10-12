@@ -13,5 +13,6 @@ function:
 * `Diff`: get difference of arrays
 * sort:
     * `SortBubble`
+    * `SortInsert`: insertion sort
 
 example code: [example_test.go](./example_test.go)
