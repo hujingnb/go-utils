@@ -6,7 +6,7 @@ if you has a question, but don't has. welcome commit `issue` or `PR`. please com
 
 install: `go get github.com/hujingnb/go-utils`
 
-this project Conform `godoc`. please check local document by command `godoc -http=:8888`
+you can see document on [godoc](https://pkg.go.dev/github.com/hujingnb/go-utils).
 
 # package 
 

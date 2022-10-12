@@ -8,7 +8,7 @@
 
 安装: `go get github.com/hujingnb/go-utils`
 
-此项目符合`godoc`规范, 可通过命令`godoc -http=:8888`在本地查看文档
+可在[godoc](https://pkg.go.dev/github.com/hujingnb/go-utils)中找到相关文档.
 
 # 包说明
 
