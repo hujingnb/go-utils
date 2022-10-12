@@ -2,6 +2,7 @@ package harray
 
 import (
 	"fmt"
+	hstring "github.com/hujingnb/go-utils/string"
 	"testing"
 )
 
@@ -104,6 +105,34 @@ func TestInArray(t *testing.T) {
 			ret := InArray(test.Input, test.Search)
 			if ret != test.Result {
 				t.Error("search in array fail")
+			}
+		})
+	}
+}
+
+func TestIndexOf(t *testing.T) {
+	testList := []struct {
+		Input  []int
+		Search int
+		Result int
+	}{
+		{
+			Input:  []int{1, 2, 3},
+			Search: 2,
+			Result: 1,
+		},
+		{
+			Input:  []int{1, 2, 3},
+			Search: 5,
+			Result: -1,
+		},
+	}
+	for index, test := range testList {
+		runName := fmt.Sprintf("test_%d", index)
+		t.Run(runName, func(t *testing.T) {
+			ret := IndexOf(test.Input, test.Search)
+			if ret != test.Result {
+				t.Error("search array data index fail")
 			}
 		})
 	}
@@ -229,6 +258,90 @@ func TestDiff(t *testing.T) {
 					t.Error("diff result error")
 					break
 				}
+			}
+		})
+	}
+}
+
+func TestBinarySearch(t *testing.T) {
+	testList := []struct {
+		input  []int
+		target int
+		output int
+	}{
+		{
+			input:  []int{1, 2, 3, 4, 5, 6, 7},
+			target: 3,
+			output: 2,
+		},
+		{
+			input:  []int{1, 2, 3, 4, 5, 6, 7},
+			target: -1,
+			output: -1,
+		},
+	}
+	for _, test := range testList {
+		runName := fmt.Sprintf("%s_%d", hstring.ToString(test.input), test.target)
+		t.Run(runName, func(t *testing.T) {
+			ret := BinarySearch(test.input, func(data int) int {
+				return data - test.target
+			})
+			if ret != test.output {
+				t.Error("search fail")
+			}
+		})
+	}
+}
+
+func TestGetSureRandArr(t *testing.T) {
+	testList := []struct {
+		seed   int64
+		n      int
+		start  int
+		end    int
+		output []int
+	}{
+		{
+			seed:   500,
+			n:      20,
+			start:  0,
+			end:    21,
+			output: []int{14, 7, 10, 17, 2, 5, 15, 16, 3, 12, 11, 4, 1, 8, 13, 19, 9, 18, 0, 6},
+		},
+		{
+			seed:   500,
+			n:      20,
+			start:  0,
+			end:    19,
+			output: []int{14, 7, 10, 17, 2, 5, 15, 16, 3, 12, 11, 4, 1, 8, 13, 19, 9, 18, 0, 6},
+		},
+		{
+			seed:   500,
+			n:      20,
+			start:  0,
+			end:    3,
+			output: []int{14, 7, 10, 17},
+		},
+		{
+			seed:   500,
+			n:      20,
+			start:  17,
+			end:    19,
+			output: []int{18, 0, 6},
+		},
+		{
+			seed:   500,
+			n:      20,
+			start:  5,
+			end:    9,
+			output: []int{5, 15, 16, 3, 12},
+		},
+	}
+	for index, test := range testList {
+		t.Run(fmt.Sprintf("%d", index), func(t *testing.T) {
+			ret := GetSureRandArr(test.seed, test.n, test.start, test.end)
+			if !Equal(ret, test.output) {
+				t.Error("sure rand arr is error")
 			}
 		})
 	}

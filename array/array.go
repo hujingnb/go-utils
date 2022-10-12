@@ -40,12 +40,18 @@ func Shuffle[T any](array []T) {
 
 // InArray 检查元素是否在数组中
 func InArray[T comparable](array []T, searchData T) bool {
-	for _, item := range array {
+	return IndexOf(array, searchData) >= 0
+
+}
+
+// IndexOf 获取元素在数组中首次出现的索引. 若不存在则返回 -1
+func IndexOf[T comparable](array []T, searchData T) int {
+	for index, item := range array {
 		if item == searchData {
-			return true
+			return index
 		}
 	}
-	return false
+	return -1
 }
 
 // Unique 数组去重
@@ -138,4 +144,66 @@ func Diff[T comparable](arr []T, arrList ...[]T) []T {
 		}
 	}
 	return result
+}
+
+// BinarySearch 从数组中查找指定数据(二分查找). 请自行保证数组有序.
+//
+// 返回目标值得数组下标, 若未找到, 则返回-1
+//
+// comparator 返回值说明(分别适用于升序和降序):
+// 	0 : 相等, 目标数据
+//  >0: 目标在当前元素的右侧
+//  <0: 目标在当前元素的左侧
+func BinarySearch[T comparable](arr []T, comparator func(T) int) int {
+	tail := 0
+	head := len(arr) - 1
+	for tail <= head {
+		mid := (head + tail) / 2
+		midValue := arr[mid]
+		tmpPar := comparator(midValue)
+		if tmpPar == 0 { // 相等, 找到了
+			return mid
+		} else if tmpPar > 0 {
+			head = mid - 1
+		} else {
+			tail = mid + 1
+		}
+	}
+	return -1
+}
+
+/*
+GetSureRandArr 使用一个确定的种子生成一个随机列表.
+列表的长度为 n, 元素为 0 ~ n-1
+返回结果为列表中获取一段数据, [start, end]
+ 其中为左右闭区间, start 从0开始
+注意, 获取的数据越靠后, 则耗费的时间越久
+
+此函数可用于重复生成随机队列, 保存好随机种子后, 每次生成的队列均相同
+
+*/
+func GetSureRandArr(seed int64, n, start, end int) []int {
+	if end >= n { // 取值不可超出范围
+		end = n - 1
+	}
+	if start > end {
+		panic("start need less then end")
+	}
+	r := rand.New(rand.NewSource(seed))
+	// 随机的数字队列
+	randArr := make([]int, n)
+	for i := 0; i < n; i++ {
+		randArr[i] = i
+	}
+	// 生成不重复的随机队列
+	for i := 0; i < n; i++ {
+		// 与后面的随机元素交换
+		randIndex := r.Intn(n-i) + i
+		randArr[randIndex], randArr[i] = randArr[i], randArr[randIndex]
+		// 数据足够返回了
+		if i >= end {
+			break
+		}
+	}
+	return randArr[start : end+1]
 }

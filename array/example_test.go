@@ -1,6 +1,9 @@
 package harray
 
-import "fmt"
+import (
+	"fmt"
+	hstring "github.com/hujingnb/go-utils/string"
+)
 
 // 按照指定长度切割数组
 func ExampleChunk() {
@@ -33,6 +36,14 @@ func ExampleInArray() {
 	ret := InArray(arr, 2)
 	fmt.Println(ret)
 	// Output: true
+}
+
+// 获取元素在数组中首次出现的索引
+func ExampleIndexOf() {
+	arr := []int{1, 2, 3}
+	ret := IndexOf(arr, 2)
+	fmt.Println(ret)
+	// Output: 1
 }
 
 // 数组去重
@@ -76,6 +87,27 @@ func ExampleDiff() {
 	// Unordered Output:
 	// 1
 	// 4
+}
+
+// 二分查找
+func ExampleBinarySearch() {
+	// 升序列表二分查找
+	arr1 := []int{1, 2, 3, 4}
+	target1 := 2
+	ret1 := BinarySearch(arr1, func(data int) int {
+		return data - target1
+	})
+	fmt.Println(ret1)
+	// 降序列表二分查找
+	arr2 := []int{4, 3, 2, 1}
+	target2 := 2
+	ret2 := BinarySearch(arr2, func(data int) int {
+		return target2 - data
+	})
+	fmt.Println(ret2)
+	// Output:
+	// 1
+	// 2
 }
 
 // 冒泡排序
@@ -126,4 +158,18 @@ func ExampleSortMerge() {
 	})
 	fmt.Println(arr)
 	// Output: [1 5 6 7 8]
+}
+
+// 使用种子获取确定的随机数据
+func ExampleGetSureRandArr() {
+	seed := int64(500)
+	n := 20
+	ret1 := GetSureRandArr(seed, n, 0, 19)
+	fmt.Println(hstring.ToString(ret1))
+	// 使用相同的随机种子, 获取部分随机数
+	ret2 := GetSureRandArr(seed, n, 2, 5)
+	fmt.Println(hstring.ToString(ret2))
+	// Output:
+	// [14 7 10 17 2 5 15 16 3 12 11 4 1 8 13 19 9 18 0 6]
+	// [10 17 2 5]
 }
