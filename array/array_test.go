@@ -2,6 +2,7 @@ package harray
 
 import (
 	"fmt"
+	hstring "github.com/hujingnb/go-utils/string"
 	"testing"
 )
 
@@ -229,6 +230,36 @@ func TestDiff(t *testing.T) {
 					t.Error("diff result error")
 					break
 				}
+			}
+		})
+	}
+}
+
+func TestBinarySearch(t *testing.T) {
+	testList := []struct {
+		input  []int
+		target int
+		output int
+	}{
+		{
+			input:  []int{1, 2, 3, 4, 5, 6, 7},
+			target: 3,
+			output: 2,
+		},
+		{
+			input:  []int{1, 2, 3, 4, 5, 6, 7},
+			target: -1,
+			output: -1,
+		},
+	}
+	for _, test := range testList {
+		runName := fmt.Sprintf("%s_%d", hstring.ToString(test.input), test.target)
+		t.Run(runName, func(t *testing.T) {
+			ret := BinarySearch(test.input, func(data int) int {
+				return data - test.target
+			})
+			if ret != test.output {
+				t.Error("search fail")
 			}
 		})
 	}

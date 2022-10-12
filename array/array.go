@@ -139,3 +139,29 @@ func Diff[T comparable](arr []T, arrList ...[]T) []T {
 	}
 	return result
 }
+
+// BinarySearch 从数组中查找指定数据(二分查找). 请自行保证数组有序.
+//
+// 返回目标值得数组下标, 若未找到, 则返回-1
+//
+// comparator 返回值说明(分别适用于升序和降序):
+// 	0 : 相等, 目标数据
+//  >0: 目标在当前元素的右侧
+//  <0: 目标在当前元素的左侧
+func BinarySearch[T comparable](arr []T, comparator func(T) int) int {
+	tail := 0
+	head := len(arr) - 1
+	for tail <= head {
+		mid := (head + tail) / 2
+		midValue := arr[mid]
+		tmpPar := comparator(midValue)
+		if tmpPar == 0 { // 相等, 找到了
+			return mid
+		} else if tmpPar > 0 {
+			head = mid - 1
+		} else {
+			tail = mid + 1
+		}
+	}
+	return -1
+}

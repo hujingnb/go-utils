@@ -78,6 +78,27 @@ func ExampleDiff() {
 	// 4
 }
 
+// 二分查找
+func ExampleBinarySearch() {
+	// 升序列表二分查找
+	arr1 := []int{1, 2, 3, 4}
+	target1 := 2
+	ret1 := BinarySearch(arr1, func(data int) int {
+		return data - target1
+	})
+	fmt.Println(ret1)
+	// 降序列表二分查找
+	arr2 := []int{4, 3, 2, 1}
+	target2 := 2
+	ret2 := BinarySearch(arr2, func(data int) int {
+		return target2 - data
+	})
+	fmt.Println(ret2)
+	// Output:
+	// 1
+	// 2
+}
+
 // 冒泡排序
 func ExampleSortBubble() {
 	arr := []int{1, 7, 5, 8, 6}

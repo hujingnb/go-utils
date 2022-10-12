@@ -11,6 +11,7 @@ function:
 * `Equal`: check array is same
 * `Intersect`: get intersection of arrays
 * `Diff`: get difference of arrays
+* `BinarySearch`: binary search
 * sort:
     * `SortBubble`
     * `SortInsert`: insertion sort

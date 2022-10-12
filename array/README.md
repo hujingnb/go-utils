@@ -11,6 +11,7 @@
 * `Equal`: 判断两数组是否相等
 * `Intersect`: 取数组交集
 * `Diff`: 取数组差集
+* `BinarySearch`: 二分查找
 * 排序操作: 
   * `SortBubble`: 冒泡排序
   * `SortInsert`: 插入排序
