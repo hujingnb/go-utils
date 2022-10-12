@@ -117,3 +117,13 @@ func ExampleSortQuick() {
 	fmt.Println(arr)
 	// Output: [1 5 6 7 8]
 }
+
+// 归并排序
+func ExampleSortMerge() {
+	arr := []int{1, 7, 5, 8, 6}
+	SortMerge(arr, func(a int, b int) int {
+		return a - b
+	})
+	fmt.Println(arr)
+	// Output: [1 5 6 7 8]
+}

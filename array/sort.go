@@ -80,3 +80,57 @@ func sortQuick[T any](arr []T, head, tail int, comparator func(a, b T) int) {
 	sortQuick(arr, head, i-1, comparator)
 	sortQuick(arr, i+1, tail, comparator)
 }
+
+// SortMerge 归并排序
+func SortMerge[T any](arr []T, comparator func(a, b T) int) {
+	length := len(arr)
+	var size int
+	for size = 2; size < length; size *= 2 {
+		// 当前步长进行归并
+		i := 0
+		for ; i < length; i += size {
+			tmpTail := i + size - 1
+			if tmpTail >= length { // 范围超出
+				break
+			}
+			middle := (i + tmpTail) / 2
+			sortMerge(arr, i, tmpTail, middle, comparator)
+		}
+		// 步长遍历后, 尾部仍存在部分数据数据
+		if i < length {
+			middle := (length + i) / 2
+			sortMerge(arr, i, length-1, middle, comparator)
+		}
+	}
+	// 对最后的两个数组进行合并
+	sortMerge(arr, 0, length-1, size/2-1, comparator)
+}
+
+// 对两个有序数组进行合并
+func sortMerge[T any](arr []T, start, tail, middle int, comparator func(a, b T) int) {
+	tmp := make([]T, 0, tail-start+1)
+	// 数组合并
+	var i, j int
+	for i, j = start, middle+1; i <= middle && j <= tail; {
+		// 前一个数组较小
+		if comparator(arr[i], arr[j]) < 0 {
+			tmp = append(tmp, arr[i])
+			i++
+		} else {
+			tmp = append(tmp, arr[j])
+			j++
+		}
+	}
+	// 写入剩余数据
+	for ; i <= middle; i++ {
+		tmp = append(tmp, arr[i])
+	}
+	for ; j <= tail; j++ {
+		tmp = append(tmp, arr[j])
+	}
+	// 将归并后的数组赋值回原数组中
+	tmpLength := len(tmp)
+	for x, y := 0, start; x < tmpLength; x, y = x+1, y+1 {
+		arr[y] = tmp[x]
+	}
+}
