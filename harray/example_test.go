@@ -2,7 +2,7 @@ package harray
 
 import (
 	"fmt"
-	hstring "github.com/hujingnb/go-utils/string"
+	"github.com/hujingnb/go-utils/hstring"
 )
 
 // 按照指定长度切割数组
@@ -172,4 +172,25 @@ func ExampleGetSureRandArr() {
 	// Output:
 	// [14 7 10 17 2 5 15 16 3 12 11 4 1 8 13 19 9 18 0 6]
 	// [10 17 2 5]
+}
+
+// 统计列表中的元素
+func ExampleCount() {
+	arr := []string{"a", "a", "b", "a"}
+	ret := Count(arr)
+	for k, v := range ret {
+		fmt.Printf("%s-%d\n", k, v)
+	}
+	// Unordered Output:
+	// a-3
+	// b-1
+}
+
+// 数组元素反转
+func ExampleReverse() {
+	arr := []int{1, 2, 3, 4}
+	Reverse(arr)
+	fmt.Println(arr)
+	// Output:
+	// [4 3 2 1]
 }

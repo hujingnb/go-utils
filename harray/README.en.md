@@ -14,6 +14,8 @@ function:
 * `Diff`: get difference of arrays
 * `BinarySearch`: binary search
 * `GetSureRandArr`: get sure rand array by same seed
+* `Count`: count value of array
+* `Reverse`: reverse array
 * sort:
     * `SortBubble`
     * `SortInsert`: insertion sort
