@@ -2,7 +2,7 @@ package harray
 
 import (
 	"fmt"
-	hstring "github.com/hujingnb/go-utils/string"
+	"github.com/hujingnb/go-utils/hstring"
 )
 
 // 按照指定长度切割数组

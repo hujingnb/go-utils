@@ -1,7 +1,7 @@
 package harray
 
 import (
-	hstring "github.com/hujingnb/go-utils/string"
+	"github.com/hujingnb/go-utils/hstring"
 	"testing"
 )
 

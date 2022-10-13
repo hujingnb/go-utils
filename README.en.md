@@ -10,9 +10,9 @@ you can see document on [godoc](https://pkg.go.dev/github.com/hujingnb/go-utils)
 
 # package 
 
-* `string`: dispose string. [doc](./string/README.en.md)
-* `array`: dispose array. [doc](./array/README.en.md)
-* `map`: dispose map [doc](./map/README.en.md)
-* `struct`: dispose struct [doc](./struct/README.en.md)
-* `number`: dispose number [doc](./number/README.en.md)
-* `system`: system [doc](./system/README.md)
+* `hstring`: dispose string. [doc](hstring/README.en.md)
+* `harray`: dispose array. [doc](harray/README.en.md)
+* `hmap`: dispose map [doc](hmap/README.en.md)
+* `hstruct`: dispose struct [doc](hstruct/README.en.md)
+* `hnumber`: dispose number [doc](hnumber/README.en.md)
+* `hsystem`: system [doc](hsystem/README.md)

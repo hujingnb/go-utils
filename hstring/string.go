@@ -7,7 +7,7 @@ import (
 	"crypto/sha1"
 	"encoding/hex"
 	"fmt"
-	harray "github.com/hujingnb/go-utils/array"
+	"github.com/hujingnb/go-utils/harray"
 	"strconv"
 	"strings"
 	"unicode"

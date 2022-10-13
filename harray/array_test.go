@@ -2,8 +2,8 @@ package harray
 
 import (
 	"fmt"
-	hmap "github.com/hujingnb/go-utils/map"
-	hstring "github.com/hujingnb/go-utils/string"
+	"github.com/hujingnb/go-utils/hmap"
+	"github.com/hujingnb/go-utils/hstring"
 	"testing"
 )
 
