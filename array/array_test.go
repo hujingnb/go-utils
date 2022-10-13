@@ -2,6 +2,7 @@ package harray
 
 import (
 	"fmt"
+	hmap "github.com/hujingnb/go-utils/map"
 	hstring "github.com/hujingnb/go-utils/string"
 	"testing"
 )
@@ -342,6 +343,30 @@ func TestGetSureRandArr(t *testing.T) {
 			ret := GetSureRandArr(test.seed, test.n, test.start, test.end)
 			if !Equal(ret, test.output) {
 				t.Error("sure rand arr is error")
+			}
+		})
+	}
+}
+
+func TestCount(t *testing.T) {
+	testList := []struct {
+		Input  []string
+		Output map[string]int
+	}{
+		{
+			Input: []string{"a", "b", "c", "a", "a", "b"},
+			Output: map[string]int{
+				"a": 3,
+				"b": 2,
+				"c": 1,
+			},
+		},
+	}
+	for index, test := range testList {
+		t.Run(fmt.Sprintf("%d", index), func(t *testing.T) {
+			ret := Count(test.Input)
+			if !hmap.Equal(ret, test.Output) {
+				t.Error("count is error")
 			}
 		})
 	}

@@ -173,3 +173,15 @@ func ExampleGetSureRandArr() {
 	// [14 7 10 17 2 5 15 16 3 12 11 4 1 8 13 19 9 18 0 6]
 	// [10 17 2 5]
 }
+
+// 统计列表中的元素
+func ExampleCount() {
+	arr := []string{"a", "a", "b", "a"}
+	ret := Count(arr)
+	for k, v := range ret {
+		fmt.Printf("%s-%d\n", k, v)
+	}
+	// Unordered Output:
+	// a-3
+	// b-1
+}

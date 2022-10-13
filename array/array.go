@@ -207,3 +207,15 @@ func GetSureRandArr(seed int64, n, start, end int) []int {
 	}
 	return randArr[start : end+1]
 }
+
+// Count 统计数组中每个元素出现的次数
+func Count[T comparable](arr []T) map[T]int {
+	result := make(map[T]int)
+	for _, item := range arr {
+		if _, ok := result[item]; !ok {
+			result[item] = 0
+		}
+		result[item]++
+	}
+	return result
+}

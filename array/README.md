@@ -14,6 +14,7 @@
 * `Diff`: 取数组差集
 * `BinarySearch`: 二分查找
 * `GetSureRandArr`: 使用相同的种子生成相同随机数组
+* `Count`: 统计数组中的元素数量
 * 排序操作: 
   * `SortBubble`: 冒泡排序
   * `SortInsert`: 插入排序
