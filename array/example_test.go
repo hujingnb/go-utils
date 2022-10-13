@@ -185,3 +185,12 @@ func ExampleCount() {
 	// a-3
 	// b-1
 }
+
+// 数组元素反转
+func ExampleReverse() {
+	arr := []int{1, 2, 3, 4}
+	Reverse(arr)
+	fmt.Println(arr)
+	// Output:
+	// [4 3 2 1]
+}

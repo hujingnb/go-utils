@@ -371,3 +371,32 @@ func TestCount(t *testing.T) {
 		})
 	}
 }
+
+func TestReverse(t *testing.T) {
+	testList := []struct {
+		Input  []int
+		Output []int
+	}{
+		{ // 单个
+			Input:  []int{1},
+			Output: []int{1},
+		},
+		{ // 奇数
+			Input:  []int{1, 2, 3},
+			Output: []int{3, 2, 1},
+		},
+		{ // 偶数
+			Input:  []int{1, 2, 3, 4},
+			Output: []int{4, 3, 2, 1},
+		},
+	}
+	for index, test := range testList {
+		t.Run(fmt.Sprintf("%d", index), func(t *testing.T) {
+			in := test.Input
+			Reverse(in)
+			if !Equal(in, test.Output) {
+				t.Error("array reverse fail")
+			}
+		})
+	}
+}

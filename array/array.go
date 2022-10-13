@@ -219,3 +219,11 @@ func Count[T comparable](arr []T) map[T]int {
 	}
 	return result
 }
+
+// Reverse 数组反转
+func Reverse[T any](arr []T) {
+	length := len(arr)
+	for i, j := 0, length-1; i < j; i, j = i+1, j-1 {
+		arr[i], arr[j] = arr[j], arr[i]
+	}
+}
