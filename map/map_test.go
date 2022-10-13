@@ -1,6 +1,7 @@
 package hmap
 
 import (
+	"fmt"
 	"testing"
 )
 
@@ -25,5 +26,103 @@ func TestIterateByOrder(t *testing.T) {
 	// 检查结果数量
 	if len(varList) != len(m) {
 		t.Error("value is miss")
+	}
+}
+
+func TestEqual(t *testing.T) {
+	testList := []struct {
+		input1 map[string]string
+		input2 map[string]string
+		output bool
+	}{
+		{
+			input1: map[string]string{
+				"a": "aa",
+				"b": "bb",
+			},
+			input2: map[string]string{
+				"a": "aa",
+				"b": "bb",
+			},
+			output: true,
+		},
+		{
+			input1: map[string]string{
+				"a": "aa",
+				"b": "bb",
+				"c": "cc",
+			},
+			input2: map[string]string{
+				"a": "aa",
+				"b": "bb",
+			},
+			output: false,
+		},
+
+		{
+			input1: map[string]string{
+				"a": "aa",
+				"b": "bb",
+			},
+			input2: map[string]string{
+				"a": "aa",
+				"b": "bb",
+				"c": "cc",
+			},
+			output: false,
+		},
+
+		{
+			input1: map[string]string{
+				"a": "aa",
+				"b": "bbb",
+			},
+			input2: map[string]string{
+				"a": "aa",
+				"b": "bb",
+			},
+			output: false,
+		},
+
+		{
+			input1: map[string]string{
+				"a": "aa",
+				"b": "bb",
+			},
+			input2: map[string]string{
+				"a": "aa",
+				"b": "bbb",
+			},
+			output: false,
+		},
+
+		{
+			input1: map[string]string{
+				"a": "aa",
+				"b": "bbb",
+				"c": "cc",
+			},
+			input2: map[string]string{
+				"a": "aa",
+				"b": "bb",
+			},
+			output: false,
+		},
+
+		{
+			input1: map[string]string{
+				"a": "aa",
+			},
+			input2: map[string]string{},
+			output: false,
+		},
+	}
+	for index, test := range testList {
+		t.Run(fmt.Sprintf("%d", index), func(t *testing.T) {
+			ret := Equal(test.input1, test.input2)
+			if ret != test.output {
+				t.Error("map equal fail")
+			}
+		})
 	}
 }
