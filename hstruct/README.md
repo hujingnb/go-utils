@@ -5,5 +5,6 @@
 主要方法如下: 
 
 * `ToMap`: 转 map
+* `Name`: 获取结构体的名称
 
 示例代码见: [example_test.go](./example_test.go)

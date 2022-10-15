@@ -1,6 +1,9 @@
 package hstruct
 
-import "fmt"
+import (
+	"fmt"
+	"reflect"
+)
 
 func ExampleToMap() {
 	s := struct {
@@ -8,7 +11,20 @@ func ExampleToMap() {
 	}{
 		Data: "1234",
 	}
-	m := ToMap(s, "json")
+	m, err := ToMap(s, "json")
+	if err != nil {
+		panic(err)
+	}
 	fmt.Println(m)
 	// Output: map[data:1234]
+}
+
+func ExampleName() {
+	s := reflect.Value{}
+	name, err := Name(s)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(name)
+	// Output: Value
 }
