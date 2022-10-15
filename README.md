@@ -18,3 +18,4 @@
 * `hstruct`: 结构体操作 [文档](hstruct/README.md)
 * `hnumber`: 数字操作 [文档](hnumber/README.md)
 * `hsystem`: 系统操作 [文档](hsystem/README.md)
+* `hcommon`: 公共方法(如深度复制) [文档](./hcommon/README.md)
