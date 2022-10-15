@@ -3,7 +3,6 @@ package harray
 import (
 	"fmt"
 	"github.com/hujingnb/go-utils/hmap"
-	"github.com/hujingnb/go-utils/hstring"
 	"testing"
 )
 
@@ -281,9 +280,8 @@ func TestBinarySearch(t *testing.T) {
 			output: -1,
 		},
 	}
-	for _, test := range testList {
-		runName := fmt.Sprintf("%s_%d", hstring.ToString(test.input), test.target)
-		t.Run(runName, func(t *testing.T) {
+	for index, test := range testList {
+		t.Run(fmt.Sprintf("%d", index), func(t *testing.T) {
 			ret := BinarySearch(test.input, func(data int) int {
 				return data - test.target
 			})
