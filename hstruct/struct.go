@@ -15,10 +15,14 @@ ToMap 转为 map
 */
 func ToMap(data interface{}, tag string) map[string]interface{} {
 	structType := reflect.TypeOf(data)
+	structValue := reflect.ValueOf(data)
+	if structType.Kind() == reflect.Ptr {
+		structType = structType.Elem()
+		structValue = structValue.Elem()
+	}
 	if structType.Kind() != reflect.Struct {
 		return nil
 	}
-	structValue := reflect.ValueOf(data)
 
 	result := make(map[string]interface{})
 	// 遍历所有字段

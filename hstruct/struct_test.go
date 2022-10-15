@@ -56,4 +56,14 @@ func TestToMap(t *testing.T) {
 		m2["vv"] != s2.V5 {
 		t.Error("fail")
 	}
+	// 指针
+	s3 := &struct {
+		V1 int
+	}{
+		V1: 1,
+	}
+	m3 := ToMap(s3, "")
+	if m3["V1"] != s3.V1 {
+		t.Error("fail")
+	}
 }
