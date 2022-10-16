@@ -3,6 +3,8 @@ package hstring
 import (
 	"crypto/md5"
 	"crypto/sha1"
+	"crypto/sha256"
+	"crypto/sha512"
 	"encoding/hex"
 )
 
@@ -21,6 +23,20 @@ func Md5By16(s string) string {
 // Sha1 sha1
 func Sha1(str string) string {
 	hash := sha1.New()
+	hash.Write([]byte(str))
+	return hex.EncodeToString(hash.Sum(nil))
+}
+
+// Sha256 SHA256
+func Sha256(str string) string {
+	hash := sha256.New()
+	hash.Write([]byte(str))
+	return hex.EncodeToString(hash.Sum(nil))
+}
+
+// Sha512 SHA512
+func Sha512(str string) string {
+	hash := sha512.New()
 	hash.Write([]byte(str))
 	return hex.EncodeToString(hash.Sum(nil))
 }
