@@ -1,7 +1,7 @@
 package harray
 
 import (
-	"github.com/hujingnb/go-utils/hstring"
+	"fmt"
 	"testing"
 )
 
@@ -63,8 +63,8 @@ func getTestList() []struct {
 }
 
 func TestSortBubble(t *testing.T) {
-	for _, test := range getTestList() {
-		t.Run(hstring.ToString(test.input), func(t *testing.T) {
+	for index, test := range getTestList() {
+		t.Run(fmt.Sprintf("%d", index), func(t *testing.T) {
 			in := test.input
 			SortBubble(in, test.comparator)
 			if !Equal(in, test.output) {
@@ -75,8 +75,8 @@ func TestSortBubble(t *testing.T) {
 }
 
 func TestSortInsert(t *testing.T) {
-	for _, test := range getTestList() {
-		t.Run(hstring.ToString(test.input), func(t *testing.T) {
+	for index, test := range getTestList() {
+		t.Run(fmt.Sprintf("%d", index), func(t *testing.T) {
 			in := test.input
 			SortInsert(in, test.comparator)
 			if !Equal(in, test.output) {
@@ -87,8 +87,8 @@ func TestSortInsert(t *testing.T) {
 }
 
 func TestSortSelect(t *testing.T) {
-	for _, test := range getTestList() {
-		t.Run(hstring.ToString(test.input), func(t *testing.T) {
+	for index, test := range getTestList() {
+		t.Run(fmt.Sprintf("%d", index), func(t *testing.T) {
 			in := test.input
 			SortSelect(in, test.comparator)
 			if !Equal(in, test.output) {
@@ -99,8 +99,8 @@ func TestSortSelect(t *testing.T) {
 }
 
 func TestSortQuick(t *testing.T) {
-	for _, test := range getTestList() {
-		t.Run(hstring.ToString(test.input), func(t *testing.T) {
+	for index, test := range getTestList() {
+		t.Run(fmt.Sprintf("%d", index), func(t *testing.T) {
 			in := test.input
 			SortQuick(in, test.comparator)
 			if !Equal(in, test.output) {
@@ -111,8 +111,8 @@ func TestSortQuick(t *testing.T) {
 }
 
 func TestSortMerge(t *testing.T) {
-	for _, test := range getTestList() {
-		t.Run(hstring.ToString(test.input), func(t *testing.T) {
+	for index, test := range getTestList() {
+		t.Run(fmt.Sprintf("%d", index), func(t *testing.T) {
 			in := test.input
 			SortMerge(in, test.comparator)
 			if !Equal(in, test.output) {
