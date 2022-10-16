@@ -4,7 +4,7 @@ import (
 	"testing"
 )
 
-func TestGet32Md5(t *testing.T) {
+func TestMd5By32(t *testing.T) {
 	testList := []struct {
 		Input  string
 		Output string
@@ -16,7 +16,7 @@ func TestGet32Md5(t *testing.T) {
 	}
 	for _, test := range testList {
 		t.Run(test.Input, func(t *testing.T) {
-			ret := Get32Md5(test.Input)
+			ret := Md5By32(test.Input)
 			if ret != test.Output {
 				t.Error("output error")
 			}
@@ -24,7 +24,7 @@ func TestGet32Md5(t *testing.T) {
 	}
 }
 
-func TestGet16Md5(t *testing.T) {
+func TestMd5By16(t *testing.T) {
 	testList := []struct {
 		Input  string
 		Output string
@@ -36,7 +36,7 @@ func TestGet16Md5(t *testing.T) {
 	}
 	for _, test := range testList {
 		t.Run(test.Input, func(t *testing.T) {
-			ret := Get16Md5(test.Input)
+			ret := Md5By16(test.Input)
 			if ret != test.Output {
 				t.Error("output error")
 			}
@@ -44,7 +44,7 @@ func TestGet16Md5(t *testing.T) {
 	}
 }
 
-func TestGetSha1(t *testing.T) {
+func TestSha1(t *testing.T) {
 	testList := []struct {
 		Input  string
 		Output string
@@ -56,7 +56,7 @@ func TestGetSha1(t *testing.T) {
 	}
 	for _, test := range testList {
 		t.Run(test.Input, func(t *testing.T) {
-			ret := GetSha1(test.Input)
+			ret := Sha1(test.Input)
 			if ret != test.Output {
 				t.Error("output error")
 			}

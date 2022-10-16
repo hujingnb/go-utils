@@ -12,13 +12,14 @@
 
 # 包说明
 
-* `hstring`: 字符串操作. [文档](./string/README.md)
-* `harray`: 数组操作. [文档](harray/README.md)
-* `hmap`: map操作. [文档](./map/README.md)
-* `hstruct`: 结构体操作 [文档](hstruct/README.md)
-* `hnumber`: 数字操作 [文档](hnumber/README.md)
-* `hsystem`: 系统操作 [文档](hsystem/README.md)
-* `hcommon`: 公共方法(如深度复制) [文档](./hcommon/README.md)
+* `hstring`: [字符串操作](./hstring/README.md)
+* `hhash`: [哈希函数](./hhash/README.md)
+* `harray`: [数组操作](harray/README.md)
+* `hmap`: [map操作](./hmap/README.md)
+* `hstruct`: [结构体操作](hstruct/README.md)
+* `hnumber`: [数字操作](hnumber/README.md)
+* `hsystem`: [系统操作](hsystem/README.md)
+* `hcommon`: [公共方法(如深度复制)](./hcommon/README.md)
 
 # PR提交规则
 
