@@ -40,6 +40,7 @@
 * `Sha1`: sha1加密
 * `Sha256`
 * `Sha512`
+* `Crc32`
 
 ## `harray`
 
