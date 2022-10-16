@@ -35,6 +35,20 @@ func ExampleToString() {
 	// Output: 5
 }
 
+// 字符串填充
+func ExamplePad() {
+	ret := Pad(1, 5, "0", PadLeft)
+	fmt.Println(ret)
+	// Output: 00001
+}
+
+func ExampleJoin() {
+	arr := []int{1, 2, 3}
+	ret := Join(arr, ",")
+	fmt.Println(ret)
+	// Output: 1,2,3
+}
+
 // 32位md5
 func ExampleGet32Md5() {
 	s := "hello"
@@ -57,18 +71,4 @@ func ExampleGetSha1() {
 	ret := GetSha1(s)
 	fmt.Println(ret)
 	// Output: aaf4c61ddcc5e8a2dabede0f3b482cd9aea9434d
-}
-
-// 字符串填充
-func ExamplePad() {
-	ret := Pad(1, 5, "0", PadLeft)
-	fmt.Println(ret)
-	// Output: 00001
-}
-
-func ExampleJoin() {
-	arr := []int{1, 2, 3}
-	ret := Join(arr, ",")
-	fmt.Println(ret)
-	// Output: 1,2,3
 }
