@@ -38,6 +38,7 @@ function:
 * `Sha1`: get sha1
 * `Sha256`
 * `Sha512`
+* `Crc32`
 
 ## `harray`
 

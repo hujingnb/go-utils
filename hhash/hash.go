@@ -6,6 +6,7 @@ import (
 	"crypto/sha256"
 	"crypto/sha512"
 	"encoding/hex"
+	"hash/crc32"
 )
 
 // Md5By32 32位md5
@@ -39,4 +40,9 @@ func Sha512(str string) string {
 	hash := sha512.New()
 	hash.Write([]byte(str))
 	return hex.EncodeToString(hash.Sum(nil))
+}
+
+// Crc32 crc32
+func Crc32(str string) uint32 {
+	return crc32.ChecksumIEEE([]byte(str))
 }

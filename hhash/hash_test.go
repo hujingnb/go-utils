@@ -101,3 +101,22 @@ func TestGetSha512(t *testing.T) {
 		})
 	}
 }
+
+func TestCrc32(t *testing.T) {
+	testList := []struct {
+		Input  string
+		Output uint32
+	}{
+		{
+			Input:  "hello",
+			Output: 907060870,
+		},
+	}
+	for _, test := range testList {
+		t.Run(test.Input, func(t *testing.T) {
+			if Crc32(test.Input) != test.Output {
+				t.Error("crc32 fail")
+			}
+		})
+	}
+}
