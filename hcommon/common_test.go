@@ -6,7 +6,7 @@ import (
 	"testing"
 )
 
-func TestCommon(t *testing.T) {
+func TestCopy(t *testing.T) {
 	// 结构体
 	t.Run("struct", func(t *testing.T) {
 		tmpInt := 10
@@ -20,7 +20,7 @@ func TestCommon(t *testing.T) {
 				V6 int
 			}
 			V7 interface{} // 接口
-			V8 *struct { // 空指针
+			V8 *struct {   // 空指针
 			}
 			V9  interface{}    // 空指针
 			V10 *int           // 基础类型指针
