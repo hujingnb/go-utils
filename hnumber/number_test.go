@@ -239,9 +239,8 @@ func TestHexInput(t *testing.T) {
 		},
 	}
 	// 进行测试
-	for _, test := range testList {
-		runName := fmt.Sprintf("test_%s_%d", test.numStr, test.radix)
-		t.Run(runName, func(t *testing.T) {
+	for index, test := range testList {
+		t.Run(fmt.Sprintf("%d", index), func(t *testing.T) {
 			value, err := HexInput(test.numStr, test.radix)
 			if test.err != "" {
 				if err == nil || err.Error() != test.err {
@@ -458,9 +457,8 @@ func TestHexOutput(t *testing.T) {
 		},
 	}
 	// 进行测试
-	for _, test := range testList {
-		runName := fmt.Sprintf("test_%d_%d", test.num, test.radix)
-		t.Run(runName, func(t *testing.T) {
+	for index, test := range testList {
+		t.Run(fmt.Sprintf("%d", index), func(t *testing.T) {
 			value, err := HexOutput(test.num, test.radix)
 			if test.err != "" {
 				if err == nil || err.Error() != test.err {

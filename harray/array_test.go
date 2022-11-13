@@ -39,8 +39,7 @@ func TestChunk(t *testing.T) {
 		},
 	}
 	for index, test := range testList {
-		runName := fmt.Sprintf("test_%d", index)
-		t.Run(runName, func(t *testing.T) {
+		t.Run(fmt.Sprintf("%d", index), func(t *testing.T) {
 			ret, err := Chunk(test.input, test.size)
 			if test.err != "" {
 				if err == nil || err.Error() != test.err {
@@ -75,8 +74,7 @@ func TestShuffle(t *testing.T) {
 		{2, 2, 2, 2},
 	}
 	for index, test := range testList {
-		runName := fmt.Sprintf("test_%d", index)
-		t.Run(runName, func(t *testing.T) {
+		t.Run(fmt.Sprintf("%d", index), func(t *testing.T) {
 			Shuffle(test)
 		})
 	}
@@ -100,8 +98,7 @@ func TestInArray(t *testing.T) {
 		},
 	}
 	for index, test := range testList {
-		runName := fmt.Sprintf("test_%d", index)
-		t.Run(runName, func(t *testing.T) {
+		t.Run(fmt.Sprintf("%d", index), func(t *testing.T) {
 			ret := InArray(test.Input, test.Search)
 			if ret != test.Result {
 				t.Error("search in array fail")
@@ -128,8 +125,7 @@ func TestIndexOf(t *testing.T) {
 		},
 	}
 	for index, test := range testList {
-		runName := fmt.Sprintf("test_%d", index)
-		t.Run(runName, func(t *testing.T) {
+		t.Run(fmt.Sprintf("%d", index), func(t *testing.T) {
 			ret := IndexOf(test.Input, test.Search)
 			if ret != test.Result {
 				t.Error("search array data index fail")
@@ -153,8 +149,7 @@ func TestUnique(t *testing.T) {
 		},
 	}
 	for index, test := range testList {
-		runName := fmt.Sprintf("%d", index)
-		t.Run(runName, func(t *testing.T) {
+		t.Run(fmt.Sprintf("%d", index), func(t *testing.T) {
 			ret := Unique(test.Input)
 			if !Equal(test.Output, ret) {
 				t.Error("unique is error")
@@ -181,8 +176,7 @@ func TestEqual(t *testing.T) {
 		},
 	}
 	for index, test := range testList {
-		runName := fmt.Sprintf("%d", index)
-		t.Run(runName, func(t *testing.T) {
+		t.Run(fmt.Sprintf("%d", index), func(t *testing.T) {
 			ret := Equal(test.Input1, test.Input2)
 			if ret != test.Result {
 				t.Error("equal is error")
@@ -243,8 +237,7 @@ func TestIntersect(t *testing.T) {
 		},
 	}
 	for index, test := range testList {
-		runName := fmt.Sprintf("%d", index)
-		t.Run(runName, func(t *testing.T) {
+		t.Run(fmt.Sprintf("%d", index), func(t *testing.T) {
 			ret := Intersect(test.Input...)
 			// 结果可能乱序, 比较内容是否一致
 			tmpMap := make(map[int]bool)
@@ -279,8 +272,7 @@ func TestDiff(t *testing.T) {
 		},
 	}
 	for index, test := range testList {
-		runName := fmt.Sprintf("%d", index)
-		t.Run(runName, func(t *testing.T) {
+		t.Run(fmt.Sprintf("%d", index), func(t *testing.T) {
 			ret := Diff(test.Input[0], test.Input[1:]...)
 			// 结果可能乱序, 比较内容是否一致
 			tmpMap := make(map[int]bool)
