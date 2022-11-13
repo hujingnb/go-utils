@@ -90,7 +90,7 @@ func EqualIgnoreOrder[T comparable](arr1, arr2 []T) bool {
 	}
 	countArray := func(arr []T) map[T]int {
 		result := make(map[T]int)
-		for _, item := range arr1 {
+		for _, item := range arr {
 			if _, ok := result[item]; !ok {
 				result[item] = 0
 			}

@@ -208,6 +208,11 @@ func TestEqualIgnoreOrder(t *testing.T) {
 			Result: false,
 		},
 		{
+			Input1: []int{1, 2, 3, 5},
+			Input2: []int{1, 2, 3, 4},
+			Result: false,
+		},
+		{
 			Input1: []int{1, 3, 2, 2},
 			Input2: []int{1, 2, 2, 3},
 			Result: true,
