@@ -63,9 +63,5 @@ func Copy[T any](source T) T {
 	default:
 		changeValue.Set(structValue)
 	}
-	if structType.Kind() == reflect.Ptr {
-		return resultValue.Interface().(T)
-	} else {
-		return resultValue.Elem().Interface().(T)
-	}
+	return resultValue.Elem().Interface().(T)
 }

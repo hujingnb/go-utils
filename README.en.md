@@ -54,6 +54,7 @@ function:
 * `IndexOf`: get item first index in array
 * `Unique`: Removes duplicate values from an array
 * `Equal`: check array is same
+* `EqualIgnoreOrder`: check array is same, ignore order
 * `Intersect`: get intersection of arrays
 * `Diff`: get difference of arrays
 * `BinarySearch`: binary search

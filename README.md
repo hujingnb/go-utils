@@ -56,6 +56,7 @@
 * `IndexOf`: 获取元素在数组中首次出现的索引
 * `Unique`: 数组去重
 * `Equal`: 判断两数组是否相等
+* `EqualIgnoreOrder`: 判断两数组是否相等, 无视顺序
 * `Intersect`: 取数组交集
 * `Diff`: 取数组差集
 * `BinarySearch`: 二分查找

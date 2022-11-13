@@ -191,6 +191,43 @@ func TestEqual(t *testing.T) {
 	}
 }
 
+func TestEqualIgnoreOrder(t *testing.T) {
+	testList := []struct {
+		Input1 []int
+		Input2 []int
+		Result bool
+	}{
+		{
+			Input1: []int{1, 2, 3},
+			Input2: []int{1, 2, 3},
+			Result: true,
+		},
+		{
+			Input1: []int{1, 2, 3},
+			Input2: []int{1, 2, 3, 4},
+			Result: false,
+		},
+		{
+			Input1: []int{1, 2, 3, 5},
+			Input2: []int{1, 2, 3, 4},
+			Result: false,
+		},
+		{
+			Input1: []int{1, 3, 2, 2},
+			Input2: []int{1, 2, 2, 3},
+			Result: true,
+		},
+	}
+	for index, test := range testList {
+		t.Run(fmt.Sprintf("%d", index), func(t *testing.T) {
+			ret := EqualIgnoreOrder(test.Input1, test.Input2)
+			if ret != test.Result {
+				t.Error("equal is error")
+			}
+		})
+	}
+}
+
 func TestIntersect(t *testing.T) {
 	testList := []struct {
 		Input  [][]int
