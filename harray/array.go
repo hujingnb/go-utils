@@ -3,6 +3,7 @@ package harray
 
 import (
 	"errors"
+	"github.com/hujingnb/go-utils/hmap"
 	"math"
 	"math/rand"
 	"time"
@@ -80,6 +81,26 @@ func Equal[T comparable](arr1, arr2 []T) bool {
 		}
 	}
 	return true
+}
+
+// EqualIgnoreOrder 比较两数组是否相同, 忽略元素顺序
+func EqualIgnoreOrder[T comparable](arr1, arr2 []T) bool {
+	if len(arr1) != len(arr2) {
+		return false
+	}
+	countArray := func(arr []T) map[T]int {
+		result := make(map[T]int)
+		for _, item := range arr1 {
+			if _, ok := result[item]; !ok {
+				result[item] = 0
+			}
+			result[item]++
+		}
+		return result
+	}
+	arr1Map := countArray(arr1)
+	arr2Map := countArray(arr2)
+	return hmap.Equal(arr1Map, arr2Map)
 }
 
 // Intersect 多个数组取交集
