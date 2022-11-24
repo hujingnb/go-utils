@@ -181,9 +181,8 @@ func TestPad(t *testing.T) {
 			output: "10.200",
 		},
 	}
-	for _, test := range testList {
-		runName := fmt.Sprintf("%s_%d_%s_%d", test.input, test.length, test.padStr, test._type)
-		t.Run(runName, func(t *testing.T) {
+	for index, test := range testList {
+		t.Run(fmt.Sprintf("%d", index), func(t *testing.T) {
 			ret := Pad(test.input, test.length, test.padStr, test._type)
 			if ret != test.output {
 				t.Error("output is error")

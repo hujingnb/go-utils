@@ -1,6 +1,8 @@
 package hcommon
 
 import (
+	"context"
+	"fmt"
 	"github.com/hujingnb/go-utils/harray"
 	"github.com/hujingnb/go-utils/hmap"
 	"testing"
@@ -298,4 +300,73 @@ func TestCopy(t *testing.T) {
 			t.Error("not depth copy")
 		}
 	})
+}
+
+func TestGetContextKeys(t *testing.T) {
+	// 多个KV
+	multKv := context.WithValue(
+		context.WithValue(context.Background(), "k1", "v1"),
+		"k2",
+		"v2",
+	)
+	// 最后一个为非 KV
+	endNotValueKv, _ := context.WithCancel(multKv)
+	// 中间存在非 KV
+	middleNotValueKv := context.WithValue(endNotValueKv, "k3", "v3")
+	// 定义结构体
+	user := struct {
+		Name string
+		Age  int
+	}{"xiaoming", 2}
+	testList := []struct {
+		ctx  context.Context
+		keys []interface{}
+	}{
+		{ // 正常情况
+			ctx:  context.WithValue(context.Background(), "k1", "v1"),
+			keys: []interface{}{"k1"},
+		},
+		{ // 无KV
+			ctx:  context.Background(),
+			keys: nil,
+		},
+		// 多个KV, 最后元素非 value
+		{
+			ctx:  endNotValueKv,
+			keys: []interface{}{"k2", "k1"},
+		},
+		{ // 多个KV, 最后元素为 KV
+			ctx:  middleNotValueKv,
+			keys: []interface{}{"k3", "k2", "k1"},
+		},
+		{ // 存在重复K
+			ctx: context.WithValue(
+				context.WithValue(context.Background(), "k1", "v1"),
+				"k1",
+				"v1",
+			),
+			keys: []interface{}{"k1"},
+		},
+		{ // K 为结构体
+			ctx:  context.WithValue(context.Background(), user, "v1"),
+			keys: []interface{}{user},
+		},
+	}
+	for index, test := range testList {
+		t.Run(fmt.Sprintf("%d", index), func(t *testing.T) {
+			retKeys := GetContextKeys(test.ctx)
+			// 判断与预期结果是否一致
+			if len(retKeys) != len(test.keys) {
+				t.Error("error")
+				return
+			} else {
+				for i := 0; i < len(retKeys); i++ {
+					if retKeys[i] != test.keys[i] {
+						t.Error("error")
+						return
+					}
+				}
+			}
+		})
+	}
 }
