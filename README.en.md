@@ -122,6 +122,7 @@ function:
 
 * `Copy`: depth copy for all kind
 * `GetContextKeys`: get context value all key
+* `ReadChannelList`: read value for channel list
 
 # PR items
 

@@ -113,3 +113,45 @@ func Copy[T any](source T) T {
 	}
 	return resultValue.Elem().Interface().(T)
 }
+
+// ReadChannelList 从 channel 列表中读取一个值
+// 此方法用于 channel 数量不确定的情况
+// 会使用反射机制, 比 select 效率要慢一些
+// 参数:
+// 	- channels: channel 列表
+// 	- isBlock: 是否阻塞
+// 返回值:
+// 	- data: 读取到的值
+// 	- ok: 是否成功读到数据
+func ReadChannelList[T any](channels []chan T, isBlock bool) (data T, ok bool) {
+	// 创建recv case
+	var cases []reflect.SelectCase
+	for _, ch := range channels {
+		cases = append(cases, reflect.SelectCase{
+			Dir:  reflect.SelectRecv,
+			Chan: reflect.ValueOf(ch),
+		})
+	}
+	//  添加 default, 防止阻塞
+	if !isBlock {
+		cases = append(cases, reflect.SelectCase{
+			Dir:  reflect.SelectDefault,
+			Chan: reflect.Value{},
+			Send: reflect.Value{},
+		})
+	}
+	// 随机选择一个case
+	_, recv, recvOK := reflect.Select(cases)
+	if recvOK {
+		var success bool
+		data, success = recv.Interface().(T)
+		if !success {
+			panic("reflect error")
+		}
+		ok = true
+		return
+	} else {
+		ok = false
+		return
+	}
+}
