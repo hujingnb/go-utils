@@ -18,3 +18,10 @@ func ExampleGetContextKeys() {
 	fmt.Println(GetContextKeys(ctx))
 	// Output: [k1]
 }
+
+func ExampleReadChannelList() {
+	ch := make(chan int, 3)
+	ch <- 1
+	fmt.Println(ReadChannelList([]chan int{ch}, true))
+	// Output: 1 true
+}

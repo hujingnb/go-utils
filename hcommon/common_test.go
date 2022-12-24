@@ -6,6 +6,7 @@ import (
 	"github.com/hujingnb/go-utils/harray"
 	"github.com/hujingnb/go-utils/hmap"
 	"testing"
+	"time"
 )
 
 func TestCopy(t *testing.T) {
@@ -369,4 +370,40 @@ func TestGetContextKeys(t *testing.T) {
 			}
 		})
 	}
+}
+
+func TestReadChannelList(t *testing.T) {
+	// 阻塞测试
+	t.Run("block", func(t *testing.T) {
+		ch := make(chan int)
+		go func() {
+			time.Sleep(time.Second)
+			ch <- 1
+		}()
+		ret, ok := ReadChannelList([]chan int{ch}, true)
+		if !ok || ret != 1 {
+			t.Error("fail")
+		}
+	})
+	// 非阻塞测试
+	t.Run("not_block", func(t *testing.T) {
+		wait := make(chan int)
+		ch := make(chan int)
+		go func() {
+			time.Sleep(time.Second)
+			ch <- 1
+			wait <- 1
+		}()
+		// 首次读取失败
+		ret, ok := ReadChannelList([]chan int{ch}, false)
+		if ok || ret != 0 {
+			t.Error("fail")
+		}
+		// 等待发送完毕再次读取
+		time.Sleep(time.Second)
+		ret, ok = ReadChannelList([]chan int{ch}, false)
+		if !ok || ret != 1 {
+			t.Error("fail")
+		}
+	})
 }
