@@ -193,3 +193,13 @@ func ExampleReverse() {
 	// Output:
 	// [4 3 2 1]
 }
+
+func ExampleNewTopList() {
+	topList := NewTopList[int](3, false, func(a int, b int) int {
+		return a - b
+	})
+	topList.Add(1, 2, 3, 4, 5)
+	fmt.Println(topList.GetData())
+	// Output:
+	// [5 4 3]
+}
