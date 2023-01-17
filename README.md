@@ -69,6 +69,7 @@
     * `SortSelect`: 选择排序
     * `SortQuick`: 快排
     * `SortMerge`: 归并排序
+* `NewTopList`: 维护一个 top n 的列表
 
 ## `hmap`
 

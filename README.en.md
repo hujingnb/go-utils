@@ -67,6 +67,7 @@ function:
     * `SortSelect`: selection sort
     * `SortQuick`: quick sort
     * `SortMerge`: merge sort
+* `NewTopList`: top n list
 
 ## `hmap`
 
