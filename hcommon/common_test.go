@@ -372,6 +372,56 @@ func TestGetContextKeys(t *testing.T) {
 	}
 }
 
+func TestCopyContextValue(t *testing.T) {
+	tests := []struct {
+		name            string
+		prepContextFunc func() context.Context
+		wantKeys        []interface{}
+	}{
+		{
+			name:            "empty context",
+			prepContextFunc: context.Background,
+			wantKeys:        []interface{}{},
+		},
+		{
+			name: "context with single key",
+			prepContextFunc: func() context.Context {
+				return context.WithValue(context.Background(), "key1", "value1")
+			},
+			wantKeys: []interface{}{"key1"},
+		},
+		{
+			name: "context with multiple keys",
+			prepContextFunc: func() context.Context {
+				ctx := context.WithValue(context.Background(), "key1", "value1")
+				ctx = context.WithValue(ctx, "key2", "value2")
+				return ctx
+			},
+			wantKeys: []interface{}{"key1", "key2"},
+		},
+	}
+
+	compareValues := func(a, b interface{}) bool {
+		if a == nil || b == nil {
+			return a == nil && b == nil
+		}
+		return a == b
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			ctx := tt.prepContextFunc()
+
+			copiedCtx := CopyContextValue(ctx)
+
+			for _, key := range tt.wantKeys {
+				if !compareValues(ctx.Value(key), copiedCtx.Value(key)) {
+					t.Errorf("CopyContextValue() = %v, want %v for key %v", copiedCtx.Value(key), ctx.Value(key), key)
+				}
+			}
+		})
+	}
+}
+
 func TestReadChannelList(t *testing.T) {
 	// 阻塞测试
 	t.Run("block", func(t *testing.T) {

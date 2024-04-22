@@ -54,6 +54,21 @@ func GetContextKeys(ctx context.Context) []interface{} {
 	return result
 }
 
+// CopyContextValue 将 ctx 中的所有 KV 提取出来, 组装成一个新的 context
+// 使用场景: 仅保留 KV 数据, 不保留 Done 结束信息
+// 注意: 获取的是系统 valueCtx 类中的内容, 若是自定义结构体无法识别
+func CopyContextValue(ctx context.Context) context.Context {
+	keys := GetContextKeys(ctx)
+	newCtx := context.Background()
+	for _, key := range keys {
+		keyVal := ctx.Value(key)
+		if keyVal != nil {
+			newCtx = context.WithValue(newCtx, key, keyVal)
+		}
+	}
+	return newCtx
+}
+
 // Copy 实现对任意类型进行深度复制
 func Copy[T any](source T) T {
 	structType := reflect.TypeOf(source)

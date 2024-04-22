@@ -19,6 +19,12 @@ func ExampleGetContextKeys() {
 	// Output: [k1]
 }
 
+func ExampleCopyContextValue() {
+	ctx := context.WithValue(context.Background(), "k1", "v1")
+	fmt.Println(CopyContextValue(ctx).Value("k1"))
+	// Output: v1
+}
+
 func ExampleReadChannelList() {
 	ch := make(chan int, 3)
 	ch <- 1
