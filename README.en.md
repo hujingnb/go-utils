@@ -123,6 +123,7 @@ function:
 
 * `Copy`: depth copy for all kind
 * `GetContextKeys`: get context value all key
+* `CopyContextValue`: copy a net context by all key value
 * `ReadChannelList`: read value for channel list
 
 # PR items

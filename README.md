@@ -125,6 +125,7 @@ map 操作. [Example](./hmap/example_test.go)
 
 * `Copy`: 对任意类型变量进行深度复制
 * `GetContextKeys`: 获取 context 中的所有 key
+* `CopyContextValue`: 复制 context 中所有 KV
 * `ReadChannelList`: 从 channel 列表中获取一个值 
 
 # PR提交规则
