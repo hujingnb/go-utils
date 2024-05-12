@@ -1,8 +1,11 @@
 package htask
 
-type Task func() (errCh chan error, finishCh chan struct{})
-
-func CreateTask(call func(errCh chan error)) Task {
+// RunTask 运行一个循环任务, 此任务有如下特征
+// 1. 在第一次运行的时候, 会同步执行, 此时可以阻塞等待 error
+// 2. 从第二运行开始会启动协程异步执行
+// 适用于如下场景:
+// 1. 耗时的任务执行, 但首次执行时的报错需要返回给前端页面用作提示
+func RunTask(call func(errCh chan error)) error {
 	errCh := make(chan error)
 	finishCh := make(chan struct{})
 	go func() {
@@ -11,18 +14,6 @@ func CreateTask(call func(errCh chan error)) Task {
 		close(errCh)
 		close(finishCh)
 	}()
-	return func() (chan error, chan struct{}) {
-		return errCh, finishCh
-	}
-}
-
-// RunTask 运行一个循环任务, 此任务有如下特征
-// 1. 在第一次运行的时候, 会同步执行, 此时可以阻塞等待 error
-// 2. 从第二运行开始会启动协程异步执行
-// 适用于如下场景:
-// 1. 耗时的任务执行, 但首次执行时的报错需要返回给前端页面用作提示
-func RunTask(task Task) error {
-	errCh, finishCh := task()
 	// 首次执行
 	select {
 	case err := <-errCh:

@@ -53,8 +53,7 @@ func TestRunTask(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			task := CreateTask(tt.call)
-			err := RunTask(task)
+			err := RunTask(tt.call)
 			if (err != nil) != tt.wantError {
 				t.Errorf("RunTask() error = %v, wantErr %v", err, tt.wantError)
 				return
